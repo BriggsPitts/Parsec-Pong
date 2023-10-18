@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://7la700tn6nvb"]
+
+[ext_resource type="Script" path="res://Line2D.gd" id="1_f5y8g"]
+
+[sub_resource type="Curve" id="Curve_xcm3m"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_iwm2o"]
+offsets = PackedFloat32Array(0, 0.550459)
+
+[node name="Line2D" type="Line2D"]
+top_level = true
+z_index = -1
+points = PackedVector2Array(92, 73, 130.206, 70.7526, 143, 70)
+width = 3.0
+width_curve = SubResource("Curve_xcm3m")
+gradient = SubResource("Gradient_iwm2o")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("1_f5y8g")

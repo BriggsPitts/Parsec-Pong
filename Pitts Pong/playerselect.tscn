@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5abc54d8nryu"]
+
+[ext_resource type="Theme" uid="uid://bangd873isqqg" path="res://pong_theme.tres" id="1_r5qql"]
+[ext_resource type="Script" path="res://Startscreen.gd" id="2_c63tx"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="UI" type="Label" parent="."]
+anchors_preset = -1
+anchor_right = 0.533
+anchor_bottom = 0.3
+offset_right = 0.0999908
+theme = ExtResource("1_r5qql")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 71.0
+offset_right = 231.0
+offset_bottom = 129.0
+script = ExtResource("2_c63tx")
+
+[node name="Button" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "1 Player"
+
+[node name="Button2" type="Button" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "2 Player"
+
+[connection signal="pressed" from="UI/VBoxContainer/Button" to="UI/VBoxContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Button2" to="UI/VBoxContainer" method="_on_button_2_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Button2" to="UI/VBoxContainer" method="_on_button_pressed"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://v73sbnd774wl"]
+
+[ext_resource type="PackedScene" uid="uid://cicspekh0586" path="res://assets/score5.glb" id="1_0gw22"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2sl3v"]
+size = Vector3(0.26, 0.435, 0.135)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+constant_force = Vector3(0, 1.01, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.195, 0)
+shape = SubResource("BoxShape3D_2sl3v")
+
+[node name="score5" parent="RigidBody3D" instance=ExtResource("1_0gw22")]

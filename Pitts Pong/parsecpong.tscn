@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgujpyr5dqanl"]
+
+[ext_resource type="PackedScene" uid="uid://cnsq8xf8md414" path="res://assets/parsecpong.glb" id="1_cwnf0"]
+[ext_resource type="Script" path="res://parsecpong.gd" id="1_i8oqr"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_i8oqr")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(0.973853, 0, -0.227178, 0, 1, 0, 0.227178, 0, 0.973853, -0.564705, 0, 0)
+gravity_scale = 0.0
+linear_velocity = Vector3(-0.18, 0, 2.215)
+constant_force = Vector3(0, 0, 0.245)
+
+[node name="parsecpong" parent="RigidBody3D" instance=ExtResource("1_cwnf0")]
+transform = Transform3D(0.991422, 0, 0.130699, 0, 1, 0, -0.130699, 0, 0.991422, -2.1742, 0, -20.445)

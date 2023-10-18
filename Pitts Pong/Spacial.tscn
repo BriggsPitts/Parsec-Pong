@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://bblpx7ydblb8n"]
+
+[ext_resource type="Script" path="res://RigidBody3D.gd" id="1_5wndi"]
+[ext_resource type="Script" path="res://Spacial.gd" id="1_7yegd"]
+[ext_resource type="Texture2D" uid="uid://cuaoipspxc87h" path="res://assets/background.png" id="2_xgy4o"]
+[ext_resource type="PackedScene" uid="uid://x5ppkmdt4tcp" path="res://assets/Amodel.glb" id="3_38868"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="4_45ui2"]
+[ext_resource type="PackedScene" uid="uid://bdsiboqef0lo0" path="res://assets/1thru4.glb" id="4_qlq1s"]
+[ext_resource type="PackedScene" uid="uid://cbog0nrtmjmvp" path="res://assets/score1.glb" id="6_dyo6a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_31tcr"]
+margin = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7u8n"]
+albedo_texture = ExtResource("2_xgy4o")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1oe0q"]
+height = 0.75
+radius = 4.25
+
+[sub_resource type="GDScript" id="GDScript_ub6rp"]
+script/source = "extends Node3D
+
+# Called when the node enters the scene tree for the first time.
+"
+
+[sub_resource type="Environment" id="Environment_jolps"]
+background_mode = 2
+fog_light_energy = 0.0
+fog_density = 0.6587
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_7yegd")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8844, 2.303, 0)
+visible = false
+freeze = true
+script = ExtResource("1_5wndi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_31tcr")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.525, -0.52, 0.5)
+material_override = SubResource("StandardMaterial3D_g7u8n")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14, 1.935)
+doppler_tracking = 2
+script = ExtResource("4_45ui2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.992546, 0.0658387, -0.102554, 0, 0.841511, 0.54024, 0.121869, -0.536213, 0.835238, 0, 2.38, 5)
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2828, 0, 0)
+freeze = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.685, 0)
+shape = SubResource("CylinderShape3D_1oe0q")
+
+[node name="Amodel" parent="." instance=ExtResource("3_38868")]
+transform = Transform3D(0.999226, 0.0393187, -0.00149123, 5.85548e-10, -0.0378995, -0.999282, -0.039347, 0.998508, -0.0378702, 13.3152, 1.54099, -0.115764)
+visible = false
+
+[node name="1thru4" parent="." instance=ExtResource("4_qlq1s")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 14.6521, 0, 0)
+visible = false
+script = SubResource("GDScript_ub6rp")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.99268, 0.0449307, 0.112102, -0.0604544, 0.988421, 0.139173, -0.10455, -0.144931, 0.983903, 0.14, 2.92, 9.455)
+light_color = Color(0.862745, 0.858824, 0.819608, 1)
+
+[node name="score1" parent="." instance=ExtResource("6_dyo6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7262, -0.775, -2.59757)
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jolps")
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9345, -0.28261, -0.216427, 0.332969, 0.908983, 0.250763, 0.12586, -0.306402, 0.943545, -4.86118, 5.88933, 6.80572)
+
+[node name="DirectionalLight3D4" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.948706, -0.273824, -0.158041, 0.219655, 0.930397, -0.293449, 0.227395, 0.243683, 0.942821, -4.86118, -7.23494, 10.4676)

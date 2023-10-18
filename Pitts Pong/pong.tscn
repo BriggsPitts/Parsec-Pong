@@ -1,0 +1,220 @@
+[gd_scene load_steps=19 format=3 uid="uid://c4t0qtys0ojai"]
+
+[ext_resource type="PackedScene" uid="uid://o8j01fwwmxgp" path="res://player.tscn" id="1_gk2rn"]
+[ext_resource type="Script" path="res://pong.gd" id="1_gnd6w"]
+[ext_resource type="Script" path="res://player2.gd" id="2_mkbyc"]
+[ext_resource type="PackedScene" uid="uid://dcvpsp6pd23uh" path="res://ball.tscn" id="3_tbwlt"]
+[ext_resource type="PackedScene" uid="uid://bblpx7ydblb8n" path="res://Spacial.tscn" id="4_8psrp"]
+[ext_resource type="PackedScene" uid="uid://dkbbioo4nms3g" path="res://playerAI.tscn" id="4_t3l0x"]
+[ext_resource type="Script" path="res://CanvasLayer.gd" id="6_8cnh0"]
+[ext_resource type="Theme" uid="uid://bangd873isqqg" path="res://pong_theme.tres" id="6_dcnf3"]
+[ext_resource type="Script" path="res://UI.gd" id="8_emk7w"]
+[ext_resource type="Script" path="res://VBoxContainer.gd" id="9_e1loa"]
+[ext_resource type="Script" path="res://P2LineEdit.gd" id="9_yqyyy"]
+[ext_resource type="Script" path="res://P2LineEdit2.gd" id="10_incpt"]
+[ext_resource type="Script" path="res://1PLineEdit.gd" id="11_7dlmr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgsoq"]
+size = Vector2(300, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aeahq"]
+size = Vector2(300, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqk7g"]
+size = Vector2(300, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5uqx"]
+size = Vector2(4, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jq71p"]
+size = Vector2(4, 200)
+
+[node name="Pong" type="Node2D"]
+script = ExtResource("1_gnd6w")
+
+[node name="Player" parent="." instance=ExtResource("1_gk2rn")]
+speed = 15000
+
+[node name="Player2" parent="." instance=ExtResource("1_gk2rn")]
+position = Vector2(250, 100)
+script = ExtResource("2_mkbyc")
+speed = 15000
+
+[node name="PlayerAI" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("4_t3l0x")]
+top_level = true
+z_index = 5
+position = Vector2(250, 100)
+ball = NodePath("../Ball")
+
+[node name="Ball" parent="." instance=ExtResource("3_tbwlt")]
+initial_ball_speed = 1000
+speed_multiplier = 1.15
+
+[node name="Ceiling" type="StaticBody2D" parent="." groups=["Ceiling"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+position = Vector2(150, 0)
+shape = SubResource("RectangleShape2D_mgsoq")
+
+[node name="Area2D" type="Area2D" parent="Ceiling" groups=["Ceiling"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling/Area2D"]
+position = Vector2(150, 0)
+shape = SubResource("RectangleShape2D_aeahq")
+
+[node name="Floor" type="StaticBody2D" parent="." groups=["Ceiling"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(150, 200)
+shape = SubResource("RectangleShape2D_mgsoq")
+
+[node name="Area2D" type="Area2D" parent="Floor" groups=["Ceiling"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/Area2D"]
+position = Vector2(150, 200)
+shape = SubResource("RectangleShape2D_sqk7g")
+
+[node name="Player2Score" type="Area2D" parent="." groups=["P2S"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2Score"]
+position = Vector2(0, 100)
+shape = SubResource("RectangleShape2D_q5uqx")
+
+[node name="Player1Score" type="Area2D" parent="." groups=["P1S"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1Score"]
+position = Vector2(300, 100)
+shape = SubResource("RectangleShape2D_jq71p")
+
+[node name="Node3D" parent="." instance=ExtResource("4_8psrp")]
+
+[node name="firstEdit" type="LineEdit" parent="Node3D"]
+offset_left = 57.0
+offset_top = 85.0
+offset_right = 244.0
+offset_bottom = 116.0
+theme = ExtResource("6_dcnf3")
+placeholder_text = "Name"
+max_length = 10
+caret_blink = true
+caret_force_displayed = true
+script = ExtResource("11_7dlmr")
+
+[node name="secondEdit" type="LineEdit" parent="Node3D"]
+offset_left = 57.0
+offset_top = 67.0
+offset_right = 244.0
+offset_bottom = 98.0
+theme = ExtResource("6_dcnf3")
+placeholder_text = "P1 Name"
+max_length = 10
+caret_blink = true
+caret_force_displayed = true
+script = ExtResource("9_yqyyy")
+
+[node name="thirdEdit" type="LineEdit" parent="Node3D"]
+offset_left = 57.0
+offset_top = 100.0
+offset_right = 244.0
+offset_bottom = 131.0
+theme = ExtResource("6_dcnf3")
+placeholder_text = "P2 Name"
+max_length = 10
+caret_blink = true
+caret_force_displayed = true
+script = ExtResource("10_incpt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("6_8cnh0")
+
+[node name="UI" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.533
+anchor_bottom = 0.3
+offset_right = 0.0999908
+theme = ExtResource("6_dcnf3")
+script = ExtResource("8_emk7w")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 69.0
+offset_right = 247.0
+offset_bottom = 145.0
+script = ExtResource("9_e1loa")
+
+[node name="Button" type="Button" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+text = "1 Player"
+
+[node name="Button2" type="Button" parent="CanvasLayer/UI/VBoxContainer"]
+layout_mode = 2
+text = "2 Player"
+
+[node name="Button" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 2
+offset_left = 70.0
+offset_top = 86.0
+offset_right = 232.0
+offset_bottom = 113.0
+theme = ExtResource("6_dcnf3")
+text = "PLAY"
+
+[node name="TitleTimer" type="Timer" parent="."]
+wait_time = 7.55
+one_shot = true
+autostart = true
+
+[connection signal="input_event" from="Player2" to="Ball" method="_on_player_2_input_event"]
+[connection signal="body_entered" from="Player2Score" to="Ball" method="_on_player_2_score_body_entered"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="." method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="Player" method="_on_first_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="PlayerAI" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="Ball" method="_on_first_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="Node3D/firstEdit" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_second_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_2_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Player2" method="_on_second_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Player2" method="_on_p_2_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="PlayerAI" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_second_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_p_2_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Node3D/secondEdit" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_third_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_2_line_edit_2_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player2" method="_on_third_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player2" method="_on_p_2_line_edit_2_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="PlayerAI" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_third_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_p_2_line_edit_2_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Node3D/thirdEdit" method="_on_text_submitted"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Player" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Player2" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="PlayerAI" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Ball" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Node3D" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Node3D/firstEdit" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/VBoxContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Player" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Player2" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="PlayerAI" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Ball" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Node3D" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Node3D/secondEdit" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Node3D/thirdEdit" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/VBoxContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/VBoxContainer" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI" method="_on_button_pressed"]
+[connection signal="timeout" from="TitleTimer" to="CanvasLayer/UI" method="_on_timer_timeout"]

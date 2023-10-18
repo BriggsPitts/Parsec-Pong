@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://biuxh34y7qog5"]
+
+[ext_resource type="PackedScene" uid="uid://x5ppkmdt4tcp" path="res://assets/Amodel.glb" id="1_kt110"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(0.698303, 0.7158, 0.00197391, 0, 0.00275762, -0.999996, -0.715802, 0.6983, 0.00192565, 0, 0.599061, 0.358169)
+
+[node name="Amodel" parent="." instance=ExtResource("1_kt110")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0427173, 0, 0.571244)

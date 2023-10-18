@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cec7j67vaeofe"]
+
+[ext_resource type="PackedScene" uid="uid://bi8jgpntvuf50" path="res://assets/score6.glb" id="1_sdmdb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yr17m"]
+height = 0.001
+
+[node name="Node3D" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="score6" parent="RigidBody3D" instance=ExtResource("1_sdmdb")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CylinderShape3D_yr17m")

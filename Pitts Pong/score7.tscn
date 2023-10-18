@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://mochwt0qmky2"]
+
+[ext_resource type="PackedScene" uid="uid://d36l6of8r6s2i" path="res://assets/score7.glb" id="1_w0g8l"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6hcqa"]
+height = 0.2
+radius = 0.15
+
+[node name="Node3D" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+gravity_scale = 0.01
+constant_torque = Vector3(0, 0.015, 0)
+
+[node name="score7" parent="RigidBody3D" instance=ExtResource("1_w0g8l")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
+shape = SubResource("CylinderShape3D_6hcqa")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.613826, 0, 1.59842)
+light_color = Color(0.721569, 0.662745, 0, 1)

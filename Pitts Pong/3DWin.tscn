@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkht08f0ussoy"]
+
+[ext_resource type="Texture2D" uid="uid://cuaoipspxc87h" path="res://assets/background.png" id="1_g8iug"]
+[ext_resource type="PackedScene" uid="uid://bblpx7ydblb8n" path="res://Spacial.tscn" id="2_f7tag"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jygdq"]
+resource_local_to_scene = false
+viewport_path = NodePath("Sprite2D/SubViewport")
+
+[node name="Sprite2D" type="Sprite2D"]
+position = Vector2(150, 100)
+texture = ExtResource("1_g8iug")
+
+[node name="screen" type="Sprite2D" parent="."]
+position = Vector2(3.775, -4.09)
+scale = Vector2(0.135, 0.135)
+texture = SubResource("ViewportTexture_jygdq")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1000, 1000)
+render_target_update_mode = 4
+
+[node name="Spacial" parent="SubViewport" instance=ExtResource("2_f7tag")]

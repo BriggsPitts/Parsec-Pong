@@ -1,0 +1,38 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bangd873isqqg"]
+
+[ext_resource type="FontFile" uid="uid://dk8guocqi8y24" path="res://assets/Quinquefive-ALoRM.ttf" id="1_u65hs"]
+[ext_resource type="Texture2D" uid="uid://cq4ivf55ishj3" path="res://assets/paneltexture.png" id="2_qoqq8"]
+[ext_resource type="Texture2D" uid="uid://s2nq5qqnpi0r" path="res://assets/buttonnormaltexture.png" id="3_aivhr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ntvmf"]
+texture = ExtResource("2_qoqq8")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g7y4p"]
+texture = ExtResource("3_aivhr")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ao6iv"]
+texture = ExtResource("2_qoqq8")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[resource]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_u65hs")
+Button/styles/hover = SubResource("StyleBoxTexture_ntvmf")
+Button/styles/normal = SubResource("StyleBoxTexture_g7y4p")
+Label/fonts/font = ExtResource("1_u65hs")
+LineEdit/colors/caret_color = Color(1, 1, 1, 1)
+LineEdit/colors/selection_color = Color(0.576471, 0.0117647, 0, 1)
+LineEdit/constants/caret_width = 4
+LineEdit/fonts/font = ExtResource("1_u65hs")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_ao6iv")
