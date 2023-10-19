@@ -48,6 +48,7 @@ func _ready():
 	
 	$Grass.position = Vector3(0, 0, 10)
 	$Trophy.position = Vector3(0, 1, 10)
+	$Crown.position = Vector3(0, 1, 10)
 	
 func _physics_process(delta):
 	
@@ -98,6 +99,7 @@ func _physics_process(delta):
 		only_once7 = false
 		await get_tree().create_timer(9).timeout
 		$Trophy.position = Vector3(1.0, 1, -0.8)
+		$Crown.position = Vector3(0.9, 6, -1.3)
 		
 	if Global.playertwoscore == 7 && only2_once7:
 		
@@ -106,7 +108,7 @@ func _physics_process(delta):
 		only2_once7 = false
 		await get_tree().create_timer(9).timeout
 		$Trophy.position = Vector3(1.0, 1, -0.8)
-	
+		$Crown.position = Vector3(0.9, 6, -1.3)
 	
 	if oneplayerP1wins == true && only3_once == true:
 		await get_tree().create_timer(9).timeout
