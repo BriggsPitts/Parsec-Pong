@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bblpx7ydblb8n"]
+[gd_scene load_steps=21 format=3 uid="uid://bblpx7ydblb8n"]
 
 [ext_resource type="Script" path="res://RigidBody3D.gd" id="1_5wndi"]
 [ext_resource type="Script" path="res://Spacial.gd" id="1_7yegd"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://Camera3D.gd" id="4_45ui2"]
 [ext_resource type="PackedScene" uid="uid://bdsiboqef0lo0" path="res://assets/1thru4.glb" id="4_qlq1s"]
 [ext_resource type="PackedScene" uid="uid://cbog0nrtmjmvp" path="res://assets/score1.glb" id="6_dyo6a"]
+[ext_resource type="Texture2D" uid="uid://bsnl4islbfjgt" path="res://assets/grassTexture.png" id="8_2jdu4"]
+[ext_resource type="PackedScene" uid="uid://dn4mt28o5mw8d" path="res://assets/trophy.glb" id="9_tltba"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_31tcr"]
 margin = 0.0
@@ -29,6 +31,32 @@ background_mode = 2
 fog_light_energy = 0.0
 fog_density = 0.6587
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_j1xvm"]
+height = 0.2
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmhdk"]
+albedo_texture = ExtResource("8_2jdu4")
+uv1_scale = Vector3(0.7, 0.7, 0.7)
+uv1_triplanar = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uqkat"]
+material = SubResource("StandardMaterial3D_hmhdk")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ns01h"]
+radius = 0.02
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jlqfx"]
+top_radius = 0.02
+bottom_radius = 0.015
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cjftb"]
+height = 0.475
+radius = 0.2
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_7yegd")
 
@@ -50,9 +78,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14, 1.935)
 doppler_tracking = 2
 script = ExtResource("4_45ui2")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.992546, 0.0658387, -0.102554, 0, 0.841511, 0.54024, 0.121869, -0.536213, 0.835238, 0, 2.38, 5)
-
 [node name="RigidBody3D2" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2828, 0, 0)
 freeze = true
@@ -70,10 +95,6 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 14.6521, 0, 0)
 visible = false
 script = SubResource("GDScript_ub6rp")
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.99268, 0.0449307, 0.112102, -0.0604544, 0.988421, 0.139173, -0.10455, -0.144931, 0.983903, 0.14, 2.92, 9.455)
-light_color = Color(0.862745, 0.858824, 0.819608, 1)
-
 [node name="score1" parent="." instance=ExtResource("6_dyo6a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7262, -0.775, -2.59757)
 visible = false
@@ -82,7 +103,39 @@ visible = false
 environment = SubResource("Environment_jolps")
 
 [node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.9345, -0.28261, -0.216427, 0.332969, 0.908983, 0.250763, 0.12586, -0.306402, 0.943545, -4.86118, 5.88933, 6.80572)
+transform = Transform3D(0.927274, -0.269876, -0.259481, 0.360519, 0.830545, 0.424524, 0.100941, -0.487198, 0.867438, -4.86118, 8.13531, 6.80572)
+light_energy = 5.197
 
 [node name="DirectionalLight3D4" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.948706, -0.273824, -0.158041, 0.219655, 0.930397, -0.293449, 0.227395, 0.243683, 0.942821, -4.86118, -7.23494, 10.4676)
+
+[node name="Grass" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, -1.5)
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grass"]
+shape = SubResource("CylinderShape3D_j1xvm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Grass/CollisionShape3D"]
+mesh = SubResource("CylinderMesh_uqkat")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Grass"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 1, -1.3)
+shape = SubResource("CylinderShape3D_ns01h")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Grass/CollisionShape3D2"]
+mesh = SubResource("CylinderMesh_jlqfx")
+
+[node name="Trophy" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.583304, -0.639438, -0.502959)
+can_sleep = false
+
+[node name="trophy" parent="Trophy" instance=ExtResource("9_tltba")]
+transform = Transform3D(0.69, 0, 0, 0, 0.69, 0, 0, 0, 0.69, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trophy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24, 0)
+shape = SubResource("CylinderShape3D_cjftb")

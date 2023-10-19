@@ -26,6 +26,11 @@ var only2_once5: bool = true
 var only2_once6: bool = true
 var only2_once7: bool = true
 
+var only3_once: bool = true
+var only3_once2: bool = true
+var only3_once3: bool = true
+var only3_once4: bool = true
+
 var title = load("res://parsecpong.tscn")
 var titlespawn = title.instantiate()
 
@@ -41,6 +46,8 @@ func _ready():
 	titlespawn.position = Vector3(1, 0.2, -15)
 	add_child(titlespawn)
 	
+	$Grass.position = Vector3(0, 0, 10)
+	$Trophy.position = Vector3(0, 1, 10)
 	
 func _physics_process(delta):
 	
@@ -84,7 +91,27 @@ func _physics_process(delta):
 	var title = load("res://parsecpong.tscn")
 	var titlespawn = title.instantiate()
 	
-	if oneplayerP1wins == true:
+	if Global.playeronescore == 7 && only_once7:
+		
+		score7spawn.position = Vector3(-0.5, 1.1, -0.01)
+		add_child(score7spawn)
+		only_once7 = false
+		await get_tree().create_timer(9).timeout
+		$Trophy.position = Vector3(1.0, 1, -0.8)
+		
+	if Global.playertwoscore == 7 && only2_once7:
+		
+		score7spawn.position = Vector3(1.5, 1.1, -0.01)
+		add_child(score7spawn)
+		only2_once7 = false
+		await get_tree().create_timer(9).timeout
+		$Trophy.position = Vector3(1.0, 1, -0.8)
+	
+	
+	if oneplayerP1wins == true && only3_once == true:
+		await get_tree().create_timer(9).timeout
+		
+		$Grass.position = Vector3(0, -0.8, -1.5)
 		
 		var new_text: String = $firstEdit.get_text().to_lower()
 		var n = 0
@@ -92,25 +119,25 @@ func _physics_process(delta):
 		var letterPos: Vector3 = Vector3(0,0,0)
 		
 		if new_text.length() == 1:
-			letterPos = Vector3(0, 0, -1)
+			letterPos = Vector3(0, -0.4, -1.5)
 		if new_text.length() == 2:
-			letterPos = Vector3(-0.3, 0, -1)
+			letterPos = Vector3(-0.3, -0.4, -1.5)
 		if new_text.length() == 3:
-			letterPos = Vector3(-0.6, 0, -1)
+			letterPos = Vector3(-0.6, -0.4, -1.5)
 		if new_text.length() == 4:
-			letterPos = Vector3(-0.9, 0, -1)
+			letterPos = Vector3(-0.9, -0.4, -1.5)
 		if new_text.length() == 5:
-			letterPos = Vector3(-1.2, 0, -1)
+			letterPos = Vector3(-1.2, -0.4, -1.5)
 		if new_text.length() == 6:
-			letterPos = Vector3(-1.5, 0, -1)
+			letterPos = Vector3(-1.5, -0.4, -1.5)
 		if new_text.length() == 7:
-			letterPos = Vector3(-1.8, 0, -1)
+			letterPos = Vector3(-1.8, -0.4, -1.5)
 		if new_text.length() == 8:
-			letterPos = Vector3(-2.1, 0, -1)
+			letterPos = Vector3(-2.1, -0.4, -1.5)
 		if new_text.length() == 9:
-			letterPos = Vector3(-2.4, 0, -1)
+			letterPos = Vector3(-2.4, -0.4, -1.5)
 		if new_text.length() == 10:
-			letterPos = Vector3(-2.7, 0, -1)
+			letterPos = Vector3(-2.7, -0.4, -1.5)
 
 		while n < new_text.length():
 		
@@ -319,50 +346,62 @@ func _physics_process(delta):
 				letterNum += 1
 		
 			n += 1
+		only3_once = false
 		pass
 	
-	if oneplayerCPUwins == true:
+	if oneplayerCPUwins == true && only3_once2 == true:
+		await get_tree().create_timer(9).timeout
+		
+		$Grass.position = Vector3(0, -0.8, -1.5)
+		
 		var c = load("res://assets/alphabet/c.glb")
 		var cspawn = c.instantiate()
-		cspawn.position = Vector3(-0.9, 0, -1)
+		cspawn.position = Vector3(-0.9, -0.4, -1.5)
 		add_child(cspawn)
 		
 		var p = load("res://assets/alphabet/p.glb")
 		var pspawn = p.instantiate()
-		pspawn.position = Vector3(-0.3, 0, -1)
+		pspawn.position = Vector3(-0.3, -0.4, -1.5)
 		add_child(pspawn)
 		
 		var u = load("res://assets/alphabet/u.glb")
 		var uspawn = u.instantiate()
-		uspawn.position = Vector3(0.3, 0, -1)
+		uspawn.position = Vector3(0.3, -0.4, -1.5)
 		add_child(uspawn)
+		
+		only3_once2 = false
 	
-	if twoplayerP1wins == true:
+	if twoplayerP1wins == true && only3_once3 == true:
+		var only3_once3 = false
+		await get_tree().create_timer(9).timeout
+		
+		$Grass.position = Vector3(0, -0.8, -1.5)
+		
 		var new_text: String = $secondEdit.get_text().to_lower()
 		var n = 0
 		var letterNum = 1
 		var letterPos: Vector3 = Vector3(0,0,0)
 		
 		if new_text.length() == 1:
-			letterPos = Vector3(0, 0, -1)
+			letterPos = Vector3(0, -0.4, -1.5)
 		if new_text.length() == 2:
-			letterPos = Vector3(-0.3, 0, -1)
+			letterPos = Vector3(-0.3, -0.4, -1.5)
 		if new_text.length() == 3:
-			letterPos = Vector3(-0.6, 0, -1)
+			letterPos = Vector3(-0.6, -0.4, -1.5)
 		if new_text.length() == 4:
-			letterPos = Vector3(-0.9, 0, -1)
+			letterPos = Vector3(-0.9, -0.4, -1.5)
 		if new_text.length() == 5:
-			letterPos = Vector3(-1.2, 0, -1)
+			letterPos = Vector3(-1.2, -0.4, -1.5)
 		if new_text.length() == 6:
-			letterPos = Vector3(-1.5, 0, -1)
+			letterPos = Vector3(-1.5, -0.4, -1.5)
 		if new_text.length() == 7:
-			letterPos = Vector3(-1.8, 0, -1)
+			letterPos = Vector3(-1.8, -0.4, -1.5)
 		if new_text.length() == 8:
-			letterPos = Vector3(-2.1, 0, -1)
+			letterPos = Vector3(-2.1, -0.4, -1.5)
 		if new_text.length() == 9:
-			letterPos = Vector3(-2.4, 0, -1)
+			letterPos = Vector3(-2.4, -0.4, -1.5)
 		if new_text.length() == 10:
-			letterPos = Vector3(-2.7, 0, -1)
+			letterPos = Vector3(-2.7, -0.4, -1.5)
 
 		while n < new_text.length():
 		
@@ -571,34 +610,39 @@ func _physics_process(delta):
 				letterNum += 1
 		
 			n += 1
+		
 		pass
 	
-	if twoplayerP2wins == true:
+	if twoplayerP2wins == true && only3_once4 == true:
+		await get_tree().create_timer(9).timeout
+		
+		$Grass.position = Vector3(0, -0.8, -1.5)
+		
 		var new_text: String = $thirdEdit.get_text().to_lower()
 		var n = 0
 		var letterNum = 1
 		var letterPos: Vector3 = Vector3(0,0,0)
 		
 		if new_text.length() == 1:
-			letterPos = Vector3(0, 0, -1)
+			letterPos = Vector3(0, -0.4, -1.5)
 		if new_text.length() == 2:
-			letterPos = Vector3(-0.3, 0, -1)
+			letterPos = Vector3(-0.3, -0.4, -1.5)
 		if new_text.length() == 3:
-			letterPos = Vector3(-0.6, 0, -1)
+			letterPos = Vector3(-0.6, -0.4, -1.5)
 		if new_text.length() == 4:
-			letterPos = Vector3(-0.9, 0, -1)
+			letterPos = Vector3(-0.9, -0.4, -1.5)
 		if new_text.length() == 5:
-			letterPos = Vector3(-1.2, 0, -1)
+			letterPos = Vector3(-1.2, -0.4, -1.5)
 		if new_text.length() == 6:
-			letterPos = Vector3(-1.5, 0, -1)
+			letterPos = Vector3(-1.5, -0.4, -1.5)
 		if new_text.length() == 7:
-			letterPos = Vector3(-1.8, 0, -1)
+			letterPos = Vector3(-1.8, -0.4, -1.5)
 		if new_text.length() == 8:
-			letterPos = Vector3(-2.1, 0, -1)
+			letterPos = Vector3(-2.1, -0.4, -1.5)
 		if new_text.length() == 9:
-			letterPos = Vector3(-2.4, 0, -1)
+			letterPos = Vector3(-2.4, -0.4, -1.5)
 		if new_text.length() == 10:
-			letterPos = Vector3(-2.7, 0, -1)
+			letterPos = Vector3(-2.7, -0.4, -1.5)
 
 		while n < new_text.length():
 		
@@ -807,6 +851,7 @@ func _physics_process(delta):
 				letterNum += 1
 		
 			n += 1
+		only3_once4 = false
 		pass
 	
 	if Global.playeronescore == 1 && only_once:
@@ -814,7 +859,6 @@ func _physics_process(delta):
 		score1spawn.position = Vector3(-0.5, 1.1, -0.01)
 		add_child(score1spawn)
 		only_once = false
-		
 		
 	if Global.playeronescore == 2 && only_once2:
 		
@@ -846,11 +890,7 @@ func _physics_process(delta):
 		add_child(score6spawn)
 		only_once6 = false
 		
-	if Global.playeronescore == 7 && only_once7:
-		
-		score7spawn.position = Vector3(-0.5, 1.1, -0.01)
-		add_child(score7spawn)
-		only_once7 = false
+	
 		
 		
 		
@@ -890,11 +930,6 @@ func _physics_process(delta):
 		add_child(score6spawn)
 		only2_once6 = false
 		
-	if Global.playertwoscore == 7 && only2_once7:
-		
-		score7spawn.position = Vector3(1.5, 1.1, -0.01)
-		add_child(score7spawn)
-		only2_once7 = false
 		
 func _on_button_pressed():
 	oneplayer = true

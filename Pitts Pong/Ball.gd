@@ -32,6 +32,9 @@ func _physics_process(delta):
 		print("GO!")
 		start_ball(delta)
 		
+	if Global.playeronescore == 7 or Global.playertwoscore == 7:
+		hide()
+		set_physics_process(false)
 
 	
 func start_ball(delta):

@@ -102,9 +102,9 @@ script = ExtResource("11_7dlmr")
 
 [node name="secondEdit" type="LineEdit" parent="Node3D"]
 offset_left = 57.0
-offset_top = 67.0
+offset_top = 63.0
 offset_right = 244.0
-offset_bottom = 98.0
+offset_bottom = 94.0
 theme = ExtResource("6_dcnf3")
 placeholder_text = "P1 Name"
 max_length = 10
@@ -114,9 +114,9 @@ script = ExtResource("9_yqyyy")
 
 [node name="thirdEdit" type="LineEdit" parent="Node3D"]
 offset_left = 57.0
-offset_top = 100.0
+offset_top = 107.0
 offset_right = 244.0
-offset_bottom = 131.0
+offset_bottom = 138.0
 theme = ExtResource("6_dcnf3")
 placeholder_text = "P2 Name"
 max_length = 10
@@ -175,26 +175,26 @@ autostart = true
 [connection signal="text_submitted" from="Node3D/firstEdit" to="Ball" method="_on_first_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="Node3D/firstEdit" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_2_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_second_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_2_line_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/secondEdit" to="Player2" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player2" method="_on_p_2_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Player2" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="PlayerAI" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_p_2_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_second_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_p_2_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Node3D/secondEdit" method="_on_text_submitted"]
-[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_third_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_2_line_edit_2_text_submitted"]
-[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player2" method="_on_third_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player2" method="_on_p_2_line_edit_2_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player2" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="PlayerAI" method="_on_p_1_line_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_third_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_p_2_line_edit_2_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Node3D/thirdEdit" method="_on_text_submitted"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="." method="_on_button_pressed"]

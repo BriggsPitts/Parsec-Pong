@@ -19,7 +19,10 @@ func _physics_process(delta):
 		
 	velocity = movement * speed * delta
 	move_and_slide()
-
+	
+	if Global.playeronescore == 7 or Global.playertwoscore == 7:
+		hide()
+		set_physics_process(false)
 
 func _on_button_pressed():
 	queue_free()

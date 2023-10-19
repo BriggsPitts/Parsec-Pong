@@ -33,6 +33,6 @@ Button/styles/normal = SubResource("StyleBoxTexture_g7y4p")
 Label/fonts/font = ExtResource("1_u65hs")
 LineEdit/colors/caret_color = Color(1, 1, 1, 1)
 LineEdit/colors/selection_color = Color(0.576471, 0.0117647, 0, 1)
-LineEdit/constants/caret_width = 4
+LineEdit/constants/caret_width = 3
 LineEdit/fonts/font = ExtResource("1_u65hs")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_ao6iv")
