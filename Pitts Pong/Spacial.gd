@@ -49,6 +49,8 @@ func _ready():
 	$Grass.position = Vector3(0, 0, 10)
 	$Trophy.position = Vector3(0, 1, 10)
 	$Crown.position = Vector3(0, 1, 10)
+	$podium.position = Vector3(0, 2, 10)
+	
 	
 func _physics_process(delta):
 	
@@ -98,8 +100,10 @@ func _physics_process(delta):
 		add_child(score7spawn)
 		only_once7 = false
 		await get_tree().create_timer(9).timeout
-		$Trophy.position = Vector3(1.0, 1, -0.8)
-		$Crown.position = Vector3(0.9, 6, -1.3)
+		$Trophy.position = Vector3(1.0, -0.7, -0.2)
+		$Crown.position = Vector3(0.9, 6, -0.7)
+		$podium.position = Vector3(0.1, -0.475, -1.1)
+		
 		
 	if Global.playertwoscore == 7 && only2_once7:
 		
@@ -107,8 +111,10 @@ func _physics_process(delta):
 		add_child(score7spawn)
 		only2_once7 = false
 		await get_tree().create_timer(9).timeout
-		$Trophy.position = Vector3(1.0, 1, -0.8)
-		$Crown.position = Vector3(0.9, 6, -1.3)
+		$Trophy.position = Vector3(1.0, -0.7, -0.2)
+		$Crown.position = Vector3(0.9, 6, -0.7)
+		$podium.position = Vector3(0.1, -0.475, -1.1)
+		
 	
 	if oneplayerP1wins == true && only3_once == true:
 		await get_tree().create_timer(9).timeout
@@ -121,25 +127,25 @@ func _physics_process(delta):
 		var letterPos: Vector3 = Vector3(0,0,0)
 		
 		if new_text.length() == 1:
-			letterPos = Vector3(0, -0.4, -1.5)
+			letterPos = Vector3(0, -0.1, -0.9)
 		if new_text.length() == 2:
-			letterPos = Vector3(-0.3, -0.4, -1.5)
+			letterPos = Vector3(-0.3, -0.1, -0.9)
 		if new_text.length() == 3:
-			letterPos = Vector3(-0.6, -0.4, -1.5)
+			letterPos = Vector3(-0.6, -0.1, -0.9)
 		if new_text.length() == 4:
-			letterPos = Vector3(-0.9, -0.4, -1.5)
+			letterPos = Vector3(-0.9, -0.1, -0.9)
 		if new_text.length() == 5:
-			letterPos = Vector3(-1.2, -0.4, -1.5)
+			letterPos = Vector3(-1.2, -0.1, -0.9)
 		if new_text.length() == 6:
-			letterPos = Vector3(-1.5, -0.4, -1.5)
+			letterPos = Vector3(-1.5, -0.1, -0.9)
 		if new_text.length() == 7:
-			letterPos = Vector3(-1.8, -0.4, -1.5)
+			letterPos = Vector3(-1.8, -0.1, -0.9)
 		if new_text.length() == 8:
-			letterPos = Vector3(-2.1, -0.4, -1.5)
+			letterPos = Vector3(-2.1, -0.1, -0.9)
 		if new_text.length() == 9:
-			letterPos = Vector3(-2.4, -0.4, -1.5)
+			letterPos = Vector3(-2.4, -0.1, -0.9)
 		if new_text.length() == 10:
-			letterPos = Vector3(-2.7, -0.4, -1.5)
+			letterPos = Vector3(-2.7, -0.1, -0.9)
 
 		while n < new_text.length():
 		
@@ -358,17 +364,17 @@ func _physics_process(delta):
 		
 		var c = load("res://assets/alphabet/c.glb")
 		var cspawn = c.instantiate()
-		cspawn.position = Vector3(-0.9, -0.4, -1.5)
+		cspawn.position = Vector3(-0.9, -0.1, -0.9)
 		add_child(cspawn)
 		
 		var p = load("res://assets/alphabet/p.glb")
 		var pspawn = p.instantiate()
-		pspawn.position = Vector3(-0.3, -0.4, -1.5)
+		pspawn.position = Vector3(-0.3, -0.1, -0.9)
 		add_child(pspawn)
 		
 		var u = load("res://assets/alphabet/u.glb")
 		var uspawn = u.instantiate()
-		uspawn.position = Vector3(0.3, -0.4, -1.5)
+		uspawn.position = Vector3(0.3, -0.1, -0.9)
 		add_child(uspawn)
 		
 		only3_once2 = false
@@ -385,25 +391,25 @@ func _physics_process(delta):
 		var letterPos: Vector3 = Vector3(0,0,0)
 		
 		if new_text.length() == 1:
-			letterPos = Vector3(0, -0.4, -1.5)
+			letterPos = Vector3(0, -0.1, -0.9)
 		if new_text.length() == 2:
-			letterPos = Vector3(-0.3, -0.4, -1.5)
+			letterPos = Vector3(-0.3, -0.1, -0.9)
 		if new_text.length() == 3:
-			letterPos = Vector3(-0.6, -0.4, -1.5)
+			letterPos = Vector3(-0.6, -0.1, -0.9)
 		if new_text.length() == 4:
-			letterPos = Vector3(-0.9, -0.4, -1.5)
+			letterPos = Vector3(-0.9, -0.1, -0.9)
 		if new_text.length() == 5:
-			letterPos = Vector3(-1.2, -0.4, -1.5)
+			letterPos = Vector3(-1.2, -0.1, -0.9)
 		if new_text.length() == 6:
-			letterPos = Vector3(-1.5, -0.4, -1.5)
+			letterPos = Vector3(-1.5, -0.1, -0.9)
 		if new_text.length() == 7:
-			letterPos = Vector3(-1.8, -0.4, -1.5)
+			letterPos = Vector3(-1.8, -0.1, -0.9)
 		if new_text.length() == 8:
-			letterPos = Vector3(-2.1, -0.4, -1.5)
+			letterPos = Vector3(-2.1, -0.1, -0.9)
 		if new_text.length() == 9:
-			letterPos = Vector3(-2.4, -0.4, -1.5)
+			letterPos = Vector3(-2.4, -0.1, -0.9)
 		if new_text.length() == 10:
-			letterPos = Vector3(-2.7, -0.4, -1.5)
+			letterPos = Vector3(-2.7, -0.1, -0.9)
 
 		while n < new_text.length():
 		
@@ -626,25 +632,25 @@ func _physics_process(delta):
 		var letterPos: Vector3 = Vector3(0,0,0)
 		
 		if new_text.length() == 1:
-			letterPos = Vector3(0, -0.4, -1.5)
+			letterPos = Vector3(0, -0.1, -0.9)
 		if new_text.length() == 2:
-			letterPos = Vector3(-0.3, -0.4, -1.5)
+			letterPos = Vector3(-0.3, -0.1, -0.9)
 		if new_text.length() == 3:
-			letterPos = Vector3(-0.6, -0.4, -1.5)
+			letterPos = Vector3(-0.6, -0.1, -0.9)
 		if new_text.length() == 4:
-			letterPos = Vector3(-0.9, -0.4, -1.5)
+			letterPos = Vector3(-0.9, -0.1, -0.9)
 		if new_text.length() == 5:
-			letterPos = Vector3(-1.2, -0.4, -1.5)
+			letterPos = Vector3(-1.2, -0.1, -0.9)
 		if new_text.length() == 6:
-			letterPos = Vector3(-1.5, -0.4, -1.5)
+			letterPos = Vector3(-1.5, -0.1, -0.9)
 		if new_text.length() == 7:
-			letterPos = Vector3(-1.8, -0.4, -1.5)
+			letterPos = Vector3(-1.8, -0.1, -0.9)
 		if new_text.length() == 8:
-			letterPos = Vector3(-2.1, -0.4, -1.5)
+			letterPos = Vector3(-2.1, -0.1, -0.9)
 		if new_text.length() == 9:
-			letterPos = Vector3(-2.4, -0.4, -1.5)
+			letterPos = Vector3(-2.4, -0.1, -0.9)
 		if new_text.length() == 10:
-			letterPos = Vector3(-2.7, -0.4, -1.5)
+			letterPos = Vector3(-2.7, -0.1, -0.9)
 
 		while n < new_text.length():
 		

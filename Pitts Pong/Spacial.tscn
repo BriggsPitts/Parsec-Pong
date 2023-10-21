@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bblpx7ydblb8n"]
+[gd_scene load_steps=26 format=3 uid="uid://bblpx7ydblb8n"]
 
 [ext_resource type="Script" path="res://RigidBody3D.gd" id="1_5wndi"]
 [ext_resource type="Script" path="res://Spacial.gd" id="1_7yegd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bsnl4islbfjgt" path="res://assets/grassTexture.png" id="8_2jdu4"]
 [ext_resource type="PackedScene" uid="uid://dn4mt28o5mw8d" path="res://assets/trophy.glb" id="9_tltba"]
 [ext_resource type="PackedScene" uid="uid://bev14cdgot1tr" path="res://assets/crown.glb" id="10_hmumo"]
+[ext_resource type="PackedScene" uid="uid://cqhwxvtt734t5" path="res://assets/podium.glb" id="11_1yjtf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_31tcr"]
 margin = 0.0
@@ -55,12 +56,17 @@ top_radius = 0.02
 bottom_radius = 0.015
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cjftb"]
-height = 0.475
-radius = 0.2
+height = 0.57
+radius = 0.23
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_c0glp"]
-height = 0.2
-radius = 0.85
+[sub_resource type="BoxShape3D" id="BoxShape3D_sv2v0"]
+size = Vector3(0.07, 0.325, 0.72)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h4n3y"]
+size = Vector3(1, 0.48, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rwpbn"]
+size = Vector3(1.293, 0.2, 0.405)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_7yegd")
@@ -136,15 +142,19 @@ shape = SubResource("CylinderShape3D_ns01h")
 mesh = SubResource("CylinderMesh_jlqfx")
 
 [node name="Trophy" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.583304, -0.639438, -0.502959)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30421, -0.639438, -1.04186)
 can_sleep = false
 
 [node name="trophy" parent="Trophy" instance=ExtResource("9_tltba")]
-transform = Transform3D(0.69, 0, 0, 0, 0.69, 0, 0, 0, 0.69, 0, 0, 0)
+transform = Transform3D(0.815, 0, 0, 0, 0.815, 0, 0, 0, 0.815, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trophy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28836, 0)
 shape = SubResource("CylinderShape3D_cjftb")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Trophy"]
+transform = Transform3D(0.573576, 0, 0.819152, 0, 1, 0, -0.819152, 0, 0.573576, 0, 0.374995, 0)
+shape = SubResource("BoxShape3D_sv2v0")
 
 [node name="Crown" type="RigidBody3D" parent="."]
 gravity_scale = 1.5
@@ -155,5 +165,37 @@ linear_velocity = Vector3(0, -0.5, 0)
 transform = Transform3D(2.925, 0, 0, 0, 2.925, 0, 0, 0, 2.925, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Crown"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23, 0)
-shape = SubResource("CylinderShape3D_c0glp")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.395, -0.77)
+shape = SubResource("BoxShape3D_h4n3y")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Crown"]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0.664, 0.395, -0.387)
+shape = SubResource("BoxShape3D_h4n3y")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Crown"]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0.664, 0.395, 0.379109)
+shape = SubResource("BoxShape3D_h4n3y")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Crown"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.395, 0.762)
+shape = SubResource("BoxShape3D_h4n3y")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Crown"]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -0.663, 0.395, -0.387)
+shape = SubResource("BoxShape3D_h4n3y")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Crown"]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.663, 0.395, 0.379)
+shape = SubResource("BoxShape3D_h4n3y")
+
+[node name="podium" type="RigidBody3D" parent="."]
+transform = Transform3D(0.887317, 0, 0.46116, 0, 1, 0, -0.46116, 0, 0.887317, 0, 0, 0)
+mass = 10.0
+freeze = true
+
+[node name="podium" parent="podium" instance=ExtResource("11_1yjtf")]
+transform = Transform3D(-0.15, 0, -3.17091e-08, 0, 0.15, 0, 2.26494e-08, 0, -0.21, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="podium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114948, -0.103148, 0.0132267)
+shape = SubResource("BoxShape3D_rwpbn")
