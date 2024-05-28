@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bblpx7ydblb8n"]
+[gd_scene load_steps=29 format=3 uid="uid://bblpx7ydblb8n"]
 
 [ext_resource type="Script" path="res://RigidBody3D.gd" id="1_5wndi"]
 [ext_resource type="Script" path="res://Spacial.gd" id="1_7yegd"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dn4mt28o5mw8d" path="res://assets/trophy.glb" id="9_tltba"]
 [ext_resource type="PackedScene" uid="uid://bev14cdgot1tr" path="res://assets/crown.glb" id="10_hmumo"]
 [ext_resource type="PackedScene" uid="uid://cqhwxvtt734t5" path="res://assets/podium.glb" id="11_1yjtf"]
+[ext_resource type="PackedScene" uid="uid://c8l2uk11luch4" path="res://assets/GO.glb" id="12_vfj5j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_31tcr"]
 margin = 0.0
@@ -35,7 +36,7 @@ fog_density = 0.6587
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_j1xvm"]
 height = 0.2
-radius = 2.0
+radius = 2.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmhdk"]
 albedo_texture = ExtResource("8_2jdu4")
@@ -44,16 +45,22 @@ uv1_triplanar = true
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_uqkat"]
 material = SubResource("StandardMaterial3D_hmhdk")
-top_radius = 2.0
-bottom_radius = 2.0
+top_radius = 2.5
+bottom_radius = 2.4
 height = 0.2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ns01h"]
+height = 2.8
 radius = 0.02
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jlqfx"]
 top_radius = 0.02
 bottom_radius = 0.015
+height = 2.8
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_baqjs"]
+size = Vector2(0.66, 1)
+orientation = 2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cjftb"]
 height = 0.57
@@ -66,7 +73,10 @@ size = Vector3(0.07, 0.325, 0.72)
 size = Vector3(1, 0.48, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rwpbn"]
-size = Vector3(1.293, 0.2, 0.405)
+size = Vector3(2.123, 0.545, 0.565)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wqnww"]
+size = Vector3(1.38, 0.53, 0.365)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_7yegd")
@@ -141,6 +151,10 @@ shape = SubResource("CylinderShape3D_ns01h")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Grass/CollisionShape3D2"]
 mesh = SubResource("CylinderMesh_jlqfx")
 
+[node name="Flag" type="MeshInstance3D" parent="Grass/CollisionShape3D2"]
+transform = Transform3D(5.24084e-05, 1, 0, -1, 5.24084e-05, 0, 0, 0, 1, -0.518176, 1.01784, 0)
+mesh = SubResource("PlaneMesh_baqjs")
+
 [node name="Trophy" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30421, -0.639438, -1.04186)
 can_sleep = false
@@ -157,7 +171,7 @@ transform = Transform3D(0.573576, 0, 0.819152, 0, 1, 0, -0.819152, 0, 0.573576, 
 shape = SubResource("BoxShape3D_sv2v0")
 
 [node name="Crown" type="RigidBody3D" parent="."]
-gravity_scale = 1.5
+gravity_scale = 1.2
 continuous_cd = true
 linear_velocity = Vector3(0, -0.5, 0)
 
@@ -189,13 +203,22 @@ transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.663, 0.
 shape = SubResource("BoxShape3D_h4n3y")
 
 [node name="podium" type="RigidBody3D" parent="."]
-transform = Transform3D(0.887317, 0, 0.46116, 0, 1, 0, -0.46116, 0, 0.887317, 0, 0, 0)
+transform = Transform3D(0.887317, 0, 0.46116, 0, 1, 0, -0.46116, 0, 0.887317, 0, -0.350749, 0)
 mass = 10.0
 freeze = true
 
 [node name="podium" parent="podium" instance=ExtResource("11_1yjtf")]
-transform = Transform3D(-0.15, 0, -3.17091e-08, 0, 0.15, 0, 2.26494e-08, 0, -0.21, 0, 0, 0)
+transform = Transform3D(-0.245, 0, -5.96046e-08, 0, 0.245, 0, 2.98023e-08, 0, -0.343, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="podium"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114948, -0.103148, 0.0132267)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114948, -0.0714106, 0.0132267)
 shape = SubResource("BoxShape3D_rwpbn")
+
+[node name="GO" type="RigidBody3D" parent="."]
+transform = Transform3D(0.945519, 0, -0.325568, 0, 1, 0, 0.325568, 0, 0.945519, 3.03224, 0, 0.634804)
+
+[node name="GO2" parent="GO" instance=ExtResource("12_vfj5j")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GO"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.723621, 0.258437, 2.98023e-08)
+shape = SubResource("BoxShape3D_wqnww")

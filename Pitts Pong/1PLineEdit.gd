@@ -20,4 +20,6 @@ func _on_button_pressed():
 
 func _on_text_submitted(new_text):
 	hide()
+	Global.playeronescore = Global.playeronescore + 1
+	Global.playertwoscore = Global.playertwoscore + 1
 	pass # Replace with function body.

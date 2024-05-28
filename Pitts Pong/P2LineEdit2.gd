@@ -19,6 +19,7 @@ func _process(delta):
 
 func _on_text_submitted(new_text):
 	hide()
+	Global.playertwoscore = Global.playertwoscore + 1
 	pass # Replace with function body.
 
 

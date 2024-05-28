@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c4t0qtys0ojai"]
+[gd_scene load_steps=61 format=3 uid="uid://c4t0qtys0ojai"]
 
 [ext_resource type="PackedScene" uid="uid://o8j01fwwmxgp" path="res://player.tscn" id="1_gk2rn"]
 [ext_resource type="Script" path="res://pong.gd" id="1_gnd6w"]
@@ -13,6 +13,37 @@
 [ext_resource type="Script" path="res://P2LineEdit.gd" id="9_yqyyy"]
 [ext_resource type="Script" path="res://P2LineEdit2.gd" id="10_incpt"]
 [ext_resource type="Script" path="res://1PLineEdit.gd" id="11_7dlmr"]
+[ext_resource type="Script" path="res://enterLabel.gd" id="14_cua44"]
+[ext_resource type="Script" path="res://playButton.gd" id="14_gx8yi"]
+[ext_resource type="Script" path="res://pressSpaceLabel.gd" id="15_adq1p"]
+[ext_resource type="Texture2D" uid="uid://vkgaqt2858sp" path="res://assets/W.png" id="15_goa78"]
+[ext_resource type="Texture2D" uid="uid://bqpvcjkc3o4ku" path="res://assets/ARROWUP.png" id="16_er5xy"]
+[ext_resource type="Script" path="res://AnimatedSprite2DW.gd" id="16_ntfsa"]
+[ext_resource type="Texture2D" uid="uid://ceot0xxh61suq" path="res://assets/S.png" id="17_0ljeu"]
+[ext_resource type="Script" path="res://AnimatedSprite2DS.gd" id="18_qrshd"]
+[ext_resource type="Script" path="res://P1Label.gd" id="19_ie28k"]
+[ext_resource type="Texture2D" uid="uid://ckvrwxqey5rcn" path="res://assets/ARROWDOWN.png" id="19_pxi2n"]
+[ext_resource type="Script" path="res://P2Label.gd" id="22_7cjna"]
+[ext_resource type="Script" path="res://AnimatedSprite2DU.gd" id="23_7205y"]
+[ext_resource type="Script" path="res://AnimatedSprite2DD.gd" id="24_olwyv"]
+[ext_resource type="Texture2D" uid="uid://cgpuioyjcggpm" path="res://assets/ExplosionSprites/frame_00_delay-0.01s.png" id="26_fik4p"]
+[ext_resource type="Texture2D" uid="uid://dlk8guaj14qt6" path="res://assets/ExplosionSprites/frame_01_delay-0.01s.png" id="27_04hhp"]
+[ext_resource type="Texture2D" uid="uid://crehjum1f2r1f" path="res://assets/ExplosionSprites/frame_02_delay-0.01s.png" id="28_lt7h0"]
+[ext_resource type="Texture2D" uid="uid://d0q1su2pmfkfr" path="res://assets/ExplosionSprites/frame_03_delay-0.01s.png" id="29_ewn72"]
+[ext_resource type="Texture2D" uid="uid://d12fnkrk5mmrs" path="res://assets/ExplosionSprites/frame_04_delay-0.01s.png" id="30_2464l"]
+[ext_resource type="Texture2D" uid="uid://cjvxpeen4sdl7" path="res://assets/ExplosionSprites/frame_05_delay-0.01s.png" id="31_oqmhm"]
+[ext_resource type="Texture2D" uid="uid://2x7h8jv6kq47" path="res://assets/ExplosionSprites/frame_06_delay-0.01s.png" id="32_5a5ct"]
+[ext_resource type="Texture2D" uid="uid://bnc0flq5jh1av" path="res://assets/ExplosionSprites/frame_07_delay-0.01s.png" id="33_we5xg"]
+[ext_resource type="Texture2D" uid="uid://vc1oy5i2tl24" path="res://assets/ExplosionSprites/frame_08_delay-0.01s.png" id="34_ikxr2"]
+[ext_resource type="Texture2D" uid="uid://657pejy2a7xi" path="res://assets/ExplosionSprites/frame_09_delay-0.01s.png" id="35_lin1q"]
+[ext_resource type="Texture2D" uid="uid://btqpyjv2lfgwi" path="res://assets/ExplosionSprites/frame_10_delay-0.01s.png" id="36_0ikgf"]
+[ext_resource type="Texture2D" uid="uid://dnmunjy5gdm8l" path="res://assets/ExplosionSprites/frame_11_delay-0.01s.png" id="37_pio4n"]
+[ext_resource type="Texture2D" uid="uid://dwlp3jgb07wxv" path="res://assets/ExplosionSprites/frame_12_delay-0.01s.png" id="38_k55mr"]
+[ext_resource type="Texture2D" uid="uid://nl8g6n33na57" path="res://assets/ExplosionSprites/frame_13_delay-0.01s.png" id="39_0t7i6"]
+[ext_resource type="Texture2D" uid="uid://w6cwcfv7rf73" path="res://assets/ExplosionSprites/frame_14_delay-0.01s.png" id="40_5jmkg"]
+[ext_resource type="Texture2D" uid="uid://d25xhhbahwn71" path="res://assets/ExplosionSprites/frame_15_delay-0.01s.png" id="41_7dtnb"]
+[ext_resource type="Texture2D" uid="uid://cnrgtne30boro" path="res://assets/ExplosionSprites/frame_16_delay-0.01s.png" id="42_aynx4"]
+[ext_resource type="Script" path="res://ExplosionScript.gd" id="43_c7l7i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgsoq"]
 size = Vector2(300, 4)
@@ -28,6 +59,174 @@ size = Vector2(4, 200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jq71p"]
 size = Vector2(4, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxr20"]
+atlas = ExtResource("16_er5xy")
+region = Rect2(17, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wim7o"]
+atlas = ExtResource("16_er5xy")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f17x8"]
+atlas = ExtResource("15_goa78")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvpc5"]
+atlas = ExtResource("15_goa78")
+region = Rect2(17, 0, 17, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5r6xf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxr20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wim7o")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f17x8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvpc5")
+}],
+"loop": true,
+"name": &"W",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5wuy"]
+atlas = ExtResource("19_pxi2n")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jllsb"]
+atlas = ExtResource("19_pxi2n")
+region = Rect2(17, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40y3m"]
+atlas = ExtResource("17_0ljeu")
+region = Rect2(17, 0, 17, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t248h"]
+atlas = ExtResource("17_0ljeu")
+region = Rect2(0, 0, 17, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_54cfi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5wuy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jllsb")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40y3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t248h")
+}],
+"loop": true,
+"name": &"S",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uypr1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_fik4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_04hhp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_lt7h0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ewn72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_2464l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_oqmhm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_5a5ct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_we5xg")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_ikxr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_lin1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_0ikgf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_pio4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_k55mr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_0t7i6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_5jmkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_7dtnb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_aynx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_fik4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_04hhp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_lt7h0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ewn72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_2464l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_oqmhm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_5a5ct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_we5xg")
+}],
+"loop": false,
+"name": &"Explosion",
+"speed": 24.0
+}]
 
 [node name="Pong" type="Node2D"]
 script = ExtResource("1_gnd6w")
@@ -152,6 +351,7 @@ layout_mode = 2
 text = "2 Player"
 
 [node name="Button" type="Button" parent="CanvasLayer/UI"]
+visible = false
 layout_mode = 2
 offset_left = 70.0
 offset_top = 86.0
@@ -159,6 +359,94 @@ offset_right = 232.0
 offset_bottom = 113.0
 theme = ExtResource("6_dcnf3")
 text = "PLAY"
+script = ExtResource("14_gx8yi")
+
+[node name="enterLabel" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_top = 151.51
+offset_right = 301.355
+offset_bottom = 170.51
+pivot_offset = Vector2(150, 9.44)
+theme_override_font_sizes/font_size = 6
+text = "(Click on Box to Type, then Press Enter)"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("14_cua44")
+
+[node name="pressSpaceLabel" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 154.0
+offset_right = 402.0
+offset_bottom = 176.0
+scale = Vector2(0.69, 0.69)
+text = "Press space to start"
+horizontal_alignment = 1
+script = ExtResource("15_adq1p")
+
+[node name="P1Label" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 12.21
+offset_top = 34.325
+offset_right = 52.21
+offset_bottom = 56.325
+text = "P1"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("19_ie28k")
+
+[node name="AnimatedSprite2DW" type="AnimatedSprite2D" parent="CanvasLayer/UI"]
+position = Vector2(28, 73)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_5r6xf")
+animation = &"W"
+autoplay = "W"
+script = ExtResource("16_ntfsa")
+
+[node name="AnimatedSprite2DS" type="AnimatedSprite2D" parent="CanvasLayer/UI"]
+position = Vector2(28, 109)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_54cfi")
+animation = &"S"
+autoplay = "S"
+script = ExtResource("18_qrshd")
+
+[node name="P2Label" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 255.155
+offset_top = 34.325
+offset_right = 295.154
+offset_bottom = 56.325
+text = "P2"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("22_7cjna")
+
+[node name="AnimatedSprite2DU" type="AnimatedSprite2D" parent="CanvasLayer/UI"]
+position = Vector2(274, 73)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_5r6xf")
+animation = &"Up"
+autoplay = "Up"
+script = ExtResource("23_7205y")
+
+[node name="AnimatedSprite2DD" type="AnimatedSprite2D" parent="CanvasLayer/UI"]
+position = Vector2(274, 109)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_54cfi")
+animation = &"Down"
+autoplay = "Down"
+script = ExtResource("24_olwyv")
+
+[node name="Explosion" type="AnimatedSprite2D" parent="CanvasLayer/UI"]
+position = Vector2(124, 119)
+rotation = 1.51146
+scale = Vector2(4.23365, 4.12005)
+sprite_frames = SubResource("SpriteFrames_uypr1")
+animation = &"Explosion"
+frame = 25
+frame_progress = 1.0
+script = ExtResource("43_c7l7i")
 
 [node name="TitleTimer" type="Timer" parent="."]
 wait_time = 7.55
@@ -175,6 +463,14 @@ autostart = true
 [connection signal="text_submitted" from="Node3D/firstEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="Node3D/firstEdit" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/enterLabel" method="_on_first_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/pressSpaceLabel" method="_on_first_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/P1Label" method="_on_first_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/AnimatedSprite2DW" method="_on_first_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/AnimatedSprite2DS" method="_on_first_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/P2Label" method="_on_first_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_first_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_first_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_2_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
@@ -186,6 +482,11 @@ autostart = true
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Node3D/secondEdit" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/enterLabel" method="_on_second_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/pressSpaceLabel" method="_on_second_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/P1Label" method="_on_second_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/AnimatedSprite2DW" method="_on_second_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/AnimatedSprite2DS" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_2_line_edit_2_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
@@ -197,6 +498,12 @@ autostart = true
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Node3D/thirdEdit" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/enterLabel" method="_on_third_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/pressSpaceLabel" method="_on_third_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/AnimatedSprite2DS" method="_on_third_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/P2Label" method="_on_third_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_third_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_third_edit_text_submitted"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Player" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Player2" method="_on_button_pressed"]
@@ -205,6 +512,14 @@ autostart = true
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Node3D" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Node3D/firstEdit" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/VBoxContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/Button" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/enterLabel" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/P1Label" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/AnimatedSprite2DW" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/AnimatedSprite2DS" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/P2Label" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Player" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Player2" method="_on_button_2_pressed"]
@@ -213,8 +528,19 @@ autostart = true
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Node3D" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Node3D/secondEdit" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Node3D/thirdEdit" method="_on_button_2_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/VBoxContainer" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/VBoxContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/VBoxContainer" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/Button" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/enterLabel" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/P1Label" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/AnimatedSprite2DW" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/AnimatedSprite2DS" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/P2Label" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI/Button" method="_on_pressed"]
+[connection signal="animation_finished" from="CanvasLayer/UI/Explosion" to="CanvasLayer/UI" method="_on_explosion_animation_finished"]
+[connection signal="animation_finished" from="CanvasLayer/UI/Explosion" to="CanvasLayer/UI/Explosion" method="_on_animation_finished"]
 [connection signal="timeout" from="TitleTimer" to="CanvasLayer/UI" method="_on_timer_timeout"]

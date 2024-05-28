@@ -34,6 +34,7 @@ var only3_once4: bool = true
 var title = load("res://parsecpong.tscn")
 var titlespawn = title.instantiate()
 
+var atGameStart: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,7 +53,14 @@ func _ready():
 	$podium.position = Vector3(0, 2, 10)
 	
 	
+	
 func _physics_process(delta):
+	
+	if Global.playeronescore == 0 && Global.playertwoscore == 0:
+		atGameStart = true
+	
+	if Input.is_action_pressed("start_round") && atGameStart == true:
+		$GO.position = Vector3(-.8, 0, -0.5)
 	
 	if Global.playeronescore == 7 && oneplayer == true:
 		oneplayerP1wins = true
@@ -100,10 +108,14 @@ func _physics_process(delta):
 		add_child(score7spawn)
 		only_once7 = false
 		await get_tree().create_timer(9).timeout
-		$Trophy.position = Vector3(1.0, -0.7, -0.2)
-		$Crown.position = Vector3(0.9, 6, -0.7)
-		$podium.position = Vector3(0.1, -0.475, -1.1)
 		
+		$Trophy.position = Vector3(1, -0.7, -0.5)
+		$podium.position = Vector3(0, -0.775, -1.2)
+		var randx = randi_range(0, 1)
+		var randz = randi_range(-0.8, -1.5)
+		$Crown.position = Vector3(randx, 10, randz)
+		
+		$Grass.position = Vector3(0, -1.1, -1.9)
 		
 	if Global.playertwoscore == 7 && only2_once7:
 		
@@ -111,15 +123,18 @@ func _physics_process(delta):
 		add_child(score7spawn)
 		only2_once7 = false
 		await get_tree().create_timer(9).timeout
-		$Trophy.position = Vector3(1.0, -0.7, -0.2)
-		$Crown.position = Vector3(0.9, 6, -0.7)
-		$podium.position = Vector3(0.1, -0.475, -1.1)
 		
+		$Trophy.position = Vector3(1, -0.7, -0.5)
+		$podium.position = Vector3(0, -0.775, -1.2)
+		var randx = randi_range(0, 1)
+		var randz = randi_range(-0.8, -1.5)
+		$Crown.position = Vector3(randx, 10, randz)
+		
+		$Grass.position = Vector3(0, -1.1, -1.9)
 	
 	if oneplayerP1wins == true && only3_once == true:
 		await get_tree().create_timer(9).timeout
 		
-		$Grass.position = Vector3(0, -0.8, -1.5)
 		
 		var new_text: String = $firstEdit.get_text().to_lower()
 		var n = 0
@@ -360,7 +375,6 @@ func _physics_process(delta):
 	if oneplayerCPUwins == true && only3_once2 == true:
 		await get_tree().create_timer(9).timeout
 		
-		$Grass.position = Vector3(0, -0.8, -1.5)
 		
 		var c = load("res://assets/alphabet/c.glb")
 		var cspawn = c.instantiate()
@@ -383,7 +397,6 @@ func _physics_process(delta):
 		var only3_once3 = false
 		await get_tree().create_timer(9).timeout
 		
-		$Grass.position = Vector3(0, -0.8, -1.5)
 		
 		var new_text: String = $secondEdit.get_text().to_lower()
 		var n = 0
@@ -624,7 +637,6 @@ func _physics_process(delta):
 	if twoplayerP2wins == true && only3_once4 == true:
 		await get_tree().create_timer(9).timeout
 		
-		$Grass.position = Vector3(0, -0.8, -1.5)
 		
 		var new_text: String = $thirdEdit.get_text().to_lower()
 		var n = 0

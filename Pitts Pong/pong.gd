@@ -1,8 +1,9 @@
 extends Node2D
-var playeronescore = 0
-var playertwoscore = 0
+var playeronescore = -1
+var playertwoscore = -1
 
-
+var textSubOne: bool = false
+var textSubTwo: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
