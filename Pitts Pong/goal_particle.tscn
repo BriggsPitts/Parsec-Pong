@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dks5twcsew2i1"]
+
+[ext_resource type="Texture2D" uid="uid://egdgcc10aek8" path="res://assets/kenney_particle-pack/PNG (Transparent)/star_07.png" id="1_nnykn"]
+
+[sub_resource type="Gradient" id="Gradient_sqjij"]
+offsets = PackedFloat32Array(0, 0.167808, 0.369863, 0.554795, 0.804795, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.834131, 0.822963, 0.144821, 1, 0.599315, 0.599315, 0.599315, 1, 0.399786, 0.462923, 0.945289, 1, 0.830041, 0.140984, 3.85046e-07, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wpkqu"]
+gradient = SubResource("Gradient_sqjij")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jqccc"]
+lifetime_randomness = 0.38
+emission_shape = 1
+emission_sphere_radius = 37.99
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 80.12
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 150.29
+initial_velocity_max = 208.09
+angular_velocity_min = 74.92
+angular_velocity_max = 158.15
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_max = 4.62
+radial_accel_max = 0.75
+damping_max = 5.781
+angle_max = 41.7
+scale_min = 0.0
+scale_max = 0.06
+color_ramp = SubResource("GradientTexture1D_wpkqu")
+hue_variation_min = -0.1
+hue_variation_max = 0.44
+
+[node name="goalParticle" type="GPUParticles2D"]
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_jqccc")
+texture = ExtResource("1_nnykn")
+one_shot = true
+explosiveness = 0.9
+randomness = 0.62

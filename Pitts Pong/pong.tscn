@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://c4t0qtys0ojai"]
+[gd_scene load_steps=63 format=3 uid="uid://c4t0qtys0ojai"]
 
 [ext_resource type="PackedScene" uid="uid://o8j01fwwmxgp" path="res://player.tscn" id="1_gk2rn"]
 [ext_resource type="Script" path="res://pong.gd" id="1_gnd6w"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dkbbioo4nms3g" path="res://playerAI.tscn" id="4_t3l0x"]
 [ext_resource type="Script" path="res://CanvasLayer.gd" id="6_8cnh0"]
 [ext_resource type="Theme" uid="uid://bangd873isqqg" path="res://pong_theme.tres" id="6_dcnf3"]
+[ext_resource type="PackedScene" uid="uid://dks5twcsew2i1" path="res://goal_particle.tscn" id="6_jr78r"]
 [ext_resource type="Script" path="res://UI.gd" id="8_emk7w"]
 [ext_resource type="Script" path="res://VBoxContainer.gd" id="9_e1loa"]
 [ext_resource type="Script" path="res://P2LineEdit.gd" id="9_yqyyy"]
@@ -44,6 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://d25xhhbahwn71" path="res://assets/ExplosionSprites/frame_15_delay-0.01s.png" id="41_7dtnb"]
 [ext_resource type="Texture2D" uid="uid://cnrgtne30boro" path="res://assets/ExplosionSprites/frame_16_delay-0.01s.png" id="42_aynx4"]
 [ext_resource type="Script" path="res://ExplosionScript.gd" id="43_c7l7i"]
+[ext_resource type="Script" path="res://RestartButton.gd" id="45_v32ey"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgsoq"]
 size = Vector2(300, 4)
@@ -331,6 +333,7 @@ anchors_preset = -1
 anchor_right = 0.533
 anchor_bottom = 0.3
 offset_right = 0.0999908
+grow_horizontal = 2
 theme = ExtResource("6_dcnf3")
 script = ExtResource("8_emk7w")
 
@@ -448,10 +451,23 @@ frame = 25
 frame_progress = 1.0
 script = ExtResource("43_c7l7i")
 
+[node name="RestartButton" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 145.0
+offset_right = 241.0
+offset_bottom = 172.0
+theme = ExtResource("6_dcnf3")
+text = "Restart?"
+script = ExtResource("45_v32ey")
+
 [node name="TitleTimer" type="Timer" parent="."]
 wait_time = 7.55
 one_shot = true
 autostart = true
+
+[node name="goalParticle" parent="." instance=ExtResource("6_jr78r")]
+position = Vector2(152.3, 500)
 
 [connection signal="input_event" from="Player2" to="Ball" method="_on_player_2_input_event"]
 [connection signal="body_entered" from="Player2Score" to="Ball" method="_on_player_2_score_body_entered"]
@@ -472,14 +488,14 @@ autostart = true
 [connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_first_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_first_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_second_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_2_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_2_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player2" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player2" method="_on_p_2_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="PlayerAI" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_second_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_p_2_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_p_2_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Node3D/secondEdit" method="_on_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/enterLabel" method="_on_second_edit_text_submitted"]
@@ -488,14 +504,14 @@ autostart = true
 [connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/AnimatedSprite2DW" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/AnimatedSprite2DS" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_third_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_2_line_edit_2_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_2_line_edit_2_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player2" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player2" method="_on_p_2_line_edit_2_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="PlayerAI" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_third_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_p_2_line_edit_2_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_p_2_line_edit_2_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Node3D/thirdEdit" method="_on_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/enterLabel" method="_on_third_edit_text_submitted"]
@@ -543,4 +559,5 @@ autostart = true
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI/Button" method="_on_pressed"]
 [connection signal="animation_finished" from="CanvasLayer/UI/Explosion" to="CanvasLayer/UI" method="_on_explosion_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/UI/Explosion" to="CanvasLayer/UI/Explosion" method="_on_animation_finished"]
+[connection signal="pressed" from="CanvasLayer/UI/RestartButton" to="CanvasLayer/UI/RestartButton" method="_on_pressed"]
 [connection signal="timeout" from="TitleTimer" to="CanvasLayer/UI" method="_on_timer_timeout"]

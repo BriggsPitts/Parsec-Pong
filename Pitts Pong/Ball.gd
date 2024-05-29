@@ -1,6 +1,13 @@
 extends CharacterBody2D
 
 class_name Ball
+
+var particle = load("res://goal_particle.tscn")
+var particleSpawn = particle.instantiate()
+
+var particle2 = load("res://goal_particle2.tscn")
+var particleSpawn2 = particle2.instantiate()
+
 @export var initial_ball_speed = 5
 @export var speed_multiplier = 1.1
 
@@ -12,11 +19,13 @@ var readytoplayp2: bool = false
 var oneplayer: bool = false
 
 func _ready():
+	
 	reset_ball()
 	hide()
 	set_physics_process(false)
 	
 func _physics_process(delta):
+	
 	var max_speed = Vector2(500,500)
 	var collision = move_and_collide(velocity * ball_speed * delta)
 	
@@ -63,7 +72,16 @@ func _on_area_2d_body_entered(body):
 
 
 func _on_area_2d_area_entered(area):
+	var goalPosition = position
 	if area.is_in_group("P1S"):
+		
+		
+		add_child(particleSpawn)
+		
+		particleSpawn.position.x = goalPosition.x + 150
+		particleSpawn.position.y = goalPosition.y + 100
+		particleSpawn.emitting = true
+		
 		
 		Global.playeronescore += 1
 		
@@ -71,6 +89,13 @@ func _on_area_2d_area_entered(area):
 		reset_ball()
 	
 	if area.is_in_group("P2S"):
+		
+		add_child(particleSpawn2)
+		
+		particleSpawn2.position.x = goalPosition.x + 150
+		particleSpawn2.position.y = goalPosition.y + 100
+		particleSpawn2.emitting = true
+		
 		
 		Global.playertwoscore += 1
 		
