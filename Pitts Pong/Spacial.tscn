@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bblpx7ydblb8n"]
+[gd_scene load_steps=45 format=3 uid="uid://bblpx7ydblb8n"]
 
 [ext_resource type="Script" path="res://RigidBody3D.gd" id="1_5wndi"]
 [ext_resource type="Script" path="res://Spacial.gd" id="1_7yegd"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://BRIGGS.gd" id="20_q6fgi"]
 [ext_resource type="Texture2D" uid="uid://cus4pmvon2i7h" path="res://assets/madeby2.png" id="21_op5if"]
 [ext_resource type="Texture2D" uid="uid://b58m401vylofi" path="res://assets/madeby3.png" id="22_wv4f1"]
+[ext_resource type="Script" path="res://Node3D.gd" id="24_shrcu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_31tcr"]
 margin = 0.0
@@ -59,19 +60,6 @@ material = SubResource("StandardMaterial3D_hmhdk")
 top_radius = 2.5
 bottom_radius = 2.4
 height = 0.2
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ns01h"]
-height = 2.8
-radius = 0.02
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_jlqfx"]
-top_radius = 0.02
-bottom_radius = 0.015
-height = 2.8
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_baqjs"]
-size = Vector2(0.66, 1)
-orientation = 2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cjftb"]
 height = 0.57
@@ -110,6 +98,29 @@ animations = [{
 "name": &"default",
 "speed": 24.0
 }]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qx86u"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_8hv7y"]
+material = SubResource("StandardMaterial3D_qx86u")
+size = Vector2(0.05, 0.05)
+
+[sub_resource type="Gradient" id="Gradient_5jedw"]
+colors = PackedColorArray(0.232984, 0.992144, 0, 1, 0.709804, 1, 0.768627, 1)
+
+[sub_resource type="Gradient" id="Gradient_a2mva"]
+colors = PackedColorArray(1, 0, 0, 1, 0.991334, 0.358937, 0.58397, 1)
+
+[sub_resource type="Gradient" id="Gradient_u1cwn"]
+colors = PackedColorArray(0.0375218, 0.275378, 1, 1, 0.981288, 0.211734, 1, 1)
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_7yegd")
@@ -176,17 +187,6 @@ shape = SubResource("CylinderShape3D_j1xvm")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Grass/CollisionShape3D"]
 mesh = SubResource("CylinderMesh_uqkat")
 skeleton = NodePath("../..")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Grass"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 1, -1.3)
-shape = SubResource("CylinderShape3D_ns01h")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Grass/CollisionShape3D2"]
-mesh = SubResource("CylinderMesh_jlqfx")
-
-[node name="Flag" type="MeshInstance3D" parent="Grass/CollisionShape3D2"]
-transform = Transform3D(5.24084e-05, 1, 0, -1, 5.24084e-05, 0, 0, 0, 1, -0.518176, 1.01784, 0)
-mesh = SubResource("PlaneMesh_baqjs")
 
 [node name="Trophy" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30421, -0.639438, -1.04186)
@@ -278,3 +278,57 @@ sprite_frames = SubResource("SpriteFrames_80jd4")
 autoplay = "default"
 frame = 2
 frame_progress = 0.603244
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("24_shrcu")
+
+[node name="GreenFireworks" type="CPUParticles3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.10535, 3.87021, -14.0701)
+emitting = false
+amount = 200
+one_shot = true
+explosiveness = 0.95
+mesh = SubResource("QuadMesh_8hv7y")
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 6.0
+initial_velocity_max = 13.0
+damping_min = 1.0
+damping_max = 5.0
+scale_amount_min = 0.9
+scale_amount_max = 1.1
+color_ramp = SubResource("Gradient_5jedw")
+
+[node name="RedFireworks" type="CPUParticles3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.783323, 5.29288, -14.0701)
+emitting = false
+amount = 200
+one_shot = true
+explosiveness = 0.95
+mesh = SubResource("QuadMesh_8hv7y")
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 6.0
+initial_velocity_max = 13.0
+damping_min = 1.0
+damping_max = 5.0
+scale_amount_min = 0.9
+scale_amount_max = 1.1
+color_ramp = SubResource("Gradient_a2mva")
+
+[node name="BlueFireworks" type="CPUParticles3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.75572, 3.23482, -14.0701)
+emitting = false
+amount = 200
+one_shot = true
+explosiveness = 0.95
+mesh = SubResource("QuadMesh_8hv7y")
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 6.0
+initial_velocity_max = 13.0
+damping_min = 1.0
+damping_max = 5.0
+scale_amount_min = 0.9
+scale_amount_max = 1.1
+color_ramp = SubResource("Gradient_u1cwn")
