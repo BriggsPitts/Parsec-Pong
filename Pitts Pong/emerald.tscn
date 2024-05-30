@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl3j3pbuptvw3"]
+
+[ext_resource type="ArrayMesh" uid="uid://chgdk7pviqnjl" path="res://assets/emerald.obj" id="1_35ta1"]
+[ext_resource type="Shader" path="res://assets/Glass_shader.gdshader" id="2_l46rj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uj8qi"]
+render_priority = 0
+shader = ExtResource("2_l46rj")
+shader_parameter/albedo = Color(0, 0.262745, 0.141176, 1)
+shader_parameter/roughness = 0.15
+shader_parameter/normal_strength = 1.0
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_plcvy"]
+size = Vector3(0.245, 0.075, 0.125)
+
+[node name="Emerald" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.82095, -0.571, 0, 0.571, 0.82095, 3.82264, 1.25769, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 0, 0, 0)
+mesh = ExtResource("1_35ta1")
+surface_material_override/0 = SubResource("ShaderMaterial_uj8qi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_plcvy")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu2l0jydpsype"]
+
+[ext_resource type="Shader" path="res://assets/Glass_shader.gdshader" id="1_xl6pr"]
+[ext_resource type="ArrayMesh" uid="uid://dfvdp2vqp7xcy" path="res://assets/ruby.obj" id="2_s2i1n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_scarn"]
+size = Vector3(0.2, 0.16, 0.165)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p3a3w"]
+render_priority = 0
+shader = ExtResource("1_xl6pr")
+shader_parameter/albedo = Color(0.407843, 0.0235294, 0.027451, 0.984314)
+shader_parameter/roughness = 0.15
+shader_parameter/normal_strength = 1.0
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+
+[node name="Ruby" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.16775, 0.830593, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_scarn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.0702563, -0.0711622, 0, 0.0711622, 0.0702563, 0, -0.000530899, 0)
+material_override = SubResource("ShaderMaterial_p3a3w")
+mesh = ExtResource("2_s2i1n")

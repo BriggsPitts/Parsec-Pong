@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://c4t0qtys0ojai"]
+[gd_scene load_steps=67 format=3 uid="uid://c4t0qtys0ojai"]
 
 [ext_resource type="PackedScene" uid="uid://o8j01fwwmxgp" path="res://player.tscn" id="1_gk2rn"]
 [ext_resource type="Script" path="res://pong.gd" id="1_gnd6w"]
@@ -16,8 +16,10 @@
 [ext_resource type="Script" path="res://1PLineEdit.gd" id="11_7dlmr"]
 [ext_resource type="Script" path="res://enterLabel.gd" id="14_cua44"]
 [ext_resource type="Script" path="res://playButton.gd" id="14_gx8yi"]
+[ext_resource type="Script" path="res://P1Button.gd" id="14_waqx1"]
 [ext_resource type="Script" path="res://pressSpaceLabel.gd" id="15_adq1p"]
 [ext_resource type="Texture2D" uid="uid://vkgaqt2858sp" path="res://assets/W.png" id="15_goa78"]
+[ext_resource type="Script" path="res://P2Button.gd" id="15_yvlu4"]
 [ext_resource type="Texture2D" uid="uid://bqpvcjkc3o4ku" path="res://assets/ARROWUP.png" id="16_er5xy"]
 [ext_resource type="Script" path="res://AnimatedSprite2DW.gd" id="16_ntfsa"]
 [ext_resource type="Texture2D" uid="uid://ceot0xxh61suq" path="res://assets/S.png" id="17_0ljeu"]
@@ -46,6 +48,8 @@
 [ext_resource type="Texture2D" uid="uid://cnrgtne30boro" path="res://assets/ExplosionSprites/frame_16_delay-0.01s.png" id="42_aynx4"]
 [ext_resource type="Script" path="res://ExplosionScript.gd" id="43_c7l7i"]
 [ext_resource type="Script" path="res://RestartButton.gd" id="45_v32ey"]
+[ext_resource type="Script" path="res://CreditsButton.gd" id="46_mbh1l"]
+[ext_resource type="Script" path="res://BackCreditsButton.gd" id="47_6oma6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgsoq"]
 size = Vector2(300, 4)
@@ -345,13 +349,15 @@ offset_right = 247.0
 offset_bottom = 145.0
 script = ExtResource("9_e1loa")
 
-[node name="Button" type="Button" parent="CanvasLayer/UI/VBoxContainer"]
+[node name="P1Button" type="Button" parent="CanvasLayer/UI/VBoxContainer"]
 layout_mode = 2
 text = "1 Player"
+script = ExtResource("14_waqx1")
 
 [node name="Button2" type="Button" parent="CanvasLayer/UI/VBoxContainer"]
 layout_mode = 2
 text = "2 Player"
+script = ExtResource("15_yvlu4")
 
 [node name="Button" type="Button" parent="CanvasLayer/UI"]
 visible = false
@@ -461,6 +467,28 @@ theme = ExtResource("6_dcnf3")
 text = "Restart?"
 script = ExtResource("45_v32ey")
 
+[node name="CreditsButton" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 175.0
+offset_right = 280.635
+offset_bottom = 202.0
+scale = Vector2(0.465, 0.465)
+text = "Credits"
+alignment = 0
+script = ExtResource("46_mbh1l")
+
+[node name="BackCreditsButton" type="Button" parent="CanvasLayer/UI"]
+visible = false
+layout_mode = 0
+offset_left = 115.0
+offset_top = 175.0
+offset_right = 258.0
+offset_bottom = 202.0
+scale = Vector2(0.465, 0.465)
+text = "Back"
+script = ExtResource("47_6oma6")
+
 [node name="TitleTimer" type="Timer" parent="."]
 wait_time = 7.55
 one_shot = true
@@ -472,11 +500,11 @@ position = Vector2(152.3, 500)
 [connection signal="input_event" from="Player2" to="Ball" method="_on_player_2_input_event"]
 [connection signal="body_entered" from="Player2Score" to="Ball" method="_on_player_2_score_body_entered"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="." method="_on_p_1_line_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/firstEdit" to="Player" method="_on_first_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="Player" method="_on_first_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="PlayerAI" method="_on_p_1_line_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/firstEdit" to="Ball" method="_on_first_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/firstEdit" to="Ball" method="_on_first_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="Node3D/firstEdit" method="_on_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/enterLabel" method="_on_first_edit_text_submitted"]
@@ -487,15 +515,15 @@ position = Vector2(152.3, 500)
 [connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/P2Label" method="_on_first_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_first_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_first_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_2_line_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/secondEdit" to="Player2" method="_on_second_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player2" method="_on_p_2_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Player2" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="PlayerAI" method="_on_p_1_line_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_p_2_line_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/secondEdit" to="Ball" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Node3D/secondEdit" method="_on_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/enterLabel" method="_on_second_edit_text_submitted"]
@@ -503,15 +531,15 @@ position = Vector2(152.3, 500)
 [connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/P1Label" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/AnimatedSprite2DW" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/AnimatedSprite2DS" method="_on_second_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_2_line_edit_2_text_submitted"]
-[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player2" method="_on_third_edit_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player2" method="_on_p_2_line_edit_2_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Player2" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="PlayerAI" method="_on_p_1_line_edit_text_submitted"]
-[connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_p_2_line_edit_2_text_submitted"]
+[connection signal="text_submitted" from="Node3D/thirdEdit" to="Ball" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Node3D" method="_on_p_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Node3D/thirdEdit" method="_on_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/enterLabel" method="_on_third_edit_text_submitted"]
@@ -520,22 +548,25 @@ position = Vector2(152.3, 500)
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/P2Label" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_third_edit_text_submitted"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Player" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Player2" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="PlayerAI" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Ball" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Node3D" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="Node3D/firstEdit" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/VBoxContainer" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/Button" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/enterLabel" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/P1Label" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/AnimatedSprite2DW" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/AnimatedSprite2DS" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/P2Label" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="." method="_on_p_1_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="Player" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="Player2" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="PlayerAI" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="Ball" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="Node3D" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="Node3D/firstEdit" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/VBoxContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/Button" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/enterLabel" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/P1Label" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/AnimatedSprite2DW" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/AnimatedSprite2DS" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/P2Label" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/CreditsButton" method="_on_p_1_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/CreditsButton" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Player" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Player2" method="_on_button_2_pressed"]
@@ -546,6 +577,7 @@ position = Vector2(152.3, 500)
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Node3D/thirdEdit" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/VBoxContainer" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/VBoxContainer" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/VBoxContainer/Button2" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/Button" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/enterLabel" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/P1Label" method="_on_button_2_pressed"]
@@ -554,10 +586,19 @@ position = Vector2(152.3, 500)
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/P2Label" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/CreditsButton" method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI/CreditsButton" method="_on_button_pressed"]
 [connection signal="animation_finished" from="CanvasLayer/UI/Explosion" to="CanvasLayer/UI" method="_on_explosion_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/UI/Explosion" to="CanvasLayer/UI/Explosion" method="_on_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/UI/RestartButton" to="CanvasLayer/UI/RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/CreditsButton" to="CanvasLayer/UI/VBoxContainer" method="_on_credits_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/CreditsButton" to="CanvasLayer/UI/CreditsButton" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/CreditsButton" to="CanvasLayer/UI/BackCreditsButton" method="_on_credits_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/BackCreditsButton" to="CanvasLayer/UI/VBoxContainer" method="_on_back_credits_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/BackCreditsButton" to="CanvasLayer/UI/CreditsButton" method="_on_back_credits_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/BackCreditsButton" to="CanvasLayer/UI/BackCreditsButton" method="_on_pressed"]
 [connection signal="timeout" from="TitleTimer" to="CanvasLayer/UI" method="_on_timer_timeout"]

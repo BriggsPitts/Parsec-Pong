@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bblpx7ydblb8n"]
+[gd_scene load_steps=42 format=3 uid="uid://bblpx7ydblb8n"]
 
 [ext_resource type="Script" path="res://RigidBody3D.gd" id="1_5wndi"]
 [ext_resource type="Script" path="res://Spacial.gd" id="1_7yegd"]
@@ -12,6 +12,17 @@
 [ext_resource type="PackedScene" uid="uid://bev14cdgot1tr" path="res://assets/crown.glb" id="10_hmumo"]
 [ext_resource type="PackedScene" uid="uid://cqhwxvtt734t5" path="res://assets/podium.glb" id="11_1yjtf"]
 [ext_resource type="PackedScene" uid="uid://c8l2uk11luch4" path="res://assets/GO.glb" id="12_vfj5j"]
+[ext_resource type="PackedScene" uid="uid://bu2l0jydpsype" path="res://ruby.tscn" id="13_i7thi"]
+[ext_resource type="PackedScene" uid="uid://dfewj78jemjnq" path="res://diamond.tscn" id="14_nqbew"]
+[ext_resource type="PackedScene" uid="uid://dl3j3pbuptvw3" path="res://emerald.tscn" id="15_vg4g4"]
+[ext_resource type="PackedScene" uid="uid://dojh0d8w7fy04" path="res://gold_bar.tscn" id="16_sffgb"]
+[ext_resource type="PackedScene" uid="uid://na0tlho6blnm" path="res://sapphire.tscn" id="17_sgwcs"]
+[ext_resource type="ArrayMesh" uid="uid://cktvmhq3rmelh" path="res://assets/BRIGGS.obj" id="18_2t54v"]
+[ext_resource type="Texture2D" uid="uid://bgcoxluvo6hs7" path="res://assets/gradienttexture.png" id="19_mmro4"]
+[ext_resource type="Texture2D" uid="uid://b3xl0bvp3ergw" path="res://assets/madeby1.png" id="20_ebwpr"]
+[ext_resource type="Script" path="res://BRIGGS.gd" id="20_q6fgi"]
+[ext_resource type="Texture2D" uid="uid://cus4pmvon2i7h" path="res://assets/madeby2.png" id="21_op5if"]
+[ext_resource type="Texture2D" uid="uid://b58m401vylofi" path="res://assets/madeby3.png" id="22_wv4f1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_31tcr"]
 margin = 0.0
@@ -77,6 +88,28 @@ size = Vector3(2.123, 0.545, 0.565)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wqnww"]
 size = Vector3(1.38, 0.53, 0.365)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jewry"]
+albedo_texture = ExtResource("19_mmro4")
+uv1_scale = Vector3(1.195, 1.485, 1)
+uv1_offset = Vector3(7.545, 1.22, 0)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80jd4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_ebwpr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_op5if")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_wv4f1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_7yegd")
@@ -222,3 +255,26 @@ transform = Transform3D(0.945519, 0, -0.325568, 0, 1, 0, 0.325568, 0, 0.945519, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GO"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.723621, 0.258437, 2.98023e-08)
 shape = SubResource("BoxShape3D_wqnww")
+
+[node name="Ruby" parent="." instance=ExtResource("13_i7thi")]
+
+[node name="Diamond" parent="." instance=ExtResource("14_nqbew")]
+
+[node name="Emerald" parent="." instance=ExtResource("15_vg4g4")]
+
+[node name="GoldBar" parent="." instance=ExtResource("16_sffgb")]
+
+[node name="Sapphire" parent="." instance=ExtResource("17_sgwcs")]
+
+[node name="BRIGGS" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.964475, -0.263988, -0.00994404, -0.0104106, -0.000368265, -0.999946, 0.26397, 0.964526, -0.00310347, -1.55343, -0.539623, -0.340894)
+mesh = ExtResource("18_2t54v")
+surface_material_override/0 = SubResource("StandardMaterial3D_jewry")
+script = ExtResource("20_q6fgi")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="BRIGGS"]
+transform = Transform3D(0.109902, -2.18279e-08, 0.0338608, -0.0338573, -0.0016438, 0.109891, 0.000483984, -0.114988, -0.00157093, 1.69209, 0.311345, -1.14281)
+sprite_frames = SubResource("SpriteFrames_80jd4")
+autoplay = "default"
+frame = 2
+frame_progress = 0.603244

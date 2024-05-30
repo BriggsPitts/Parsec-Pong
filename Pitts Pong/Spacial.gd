@@ -31,6 +31,8 @@ var only3_once2: bool = true
 var only3_once3: bool = true
 var only3_once4: bool = true
 
+var only4_once: bool = true
+
 var title = load("res://parsecpong.tscn")
 var titlespawn = title.instantiate()
 
@@ -44,6 +46,7 @@ func _ready():
 	add_child(Aspawn)
 	
 	
+	
 	titlespawn.position = Vector3(1, 0.2, -15)
 	add_child(titlespawn)
 	
@@ -55,6 +58,9 @@ func _ready():
 	
 	
 func _physics_process(delta):
+	
+	var gemLoop: int = 0
+	
 	
 	if Global.playeronescore == 0 && Global.playertwoscore == 0:
 		atGameStart = true
@@ -117,6 +123,9 @@ func _physics_process(delta):
 		
 		$Grass.position = Vector3(0, -1.1, -1.9)
 		
+		
+		
+		
 	if Global.playertwoscore == 7 && only2_once7:
 		
 		score7spawn.position = Vector3(1.5, 1.1, -0.01)
@@ -129,6 +138,7 @@ func _physics_process(delta):
 		var randx = randi_range(0, 1)
 		var randz = randi_range(-0.8, -1.5)
 		$Crown.position = Vector3(randx, 10, randz)
+		
 		
 		$Grass.position = Vector3(0, -1.1, -1.9)
 	
@@ -951,6 +961,42 @@ func _physics_process(delta):
 		only2_once6 = false
 		
 		
+	if Global.playeronescore == 7 && only4_once == true or Global.playertwoscore == 7 && only4_once == true:
+		while gemLoop < 40:
+			_rubySpawner()
+			gemLoop +=1
+		only4_once = false
+		
+func _rubySpawner():
+	
+	var sapphire = load("res://sapphire.tscn")
+	var sapphireSpawn = sapphire.instantiate()
+	
+	var gold = load("res://gold_bar.tscn")
+	var goldSpawn = gold.instantiate()
+	
+	var emerald = load("res://emerald.tscn")
+	var emeraldSpawn = emerald.instantiate()
+	
+	var diamond = load("res://diamond.tscn")
+	var diamondSpawn = diamond.instantiate()
+	
+	var ruby = load("res://ruby.tscn")
+	var rubySpawn = ruby.instantiate()
+	
+	sapphireSpawn.position = Vector3(randf_range(-1, 1), 3, randf_range(-0.8,-1.5))
+	add_child(sapphireSpawn)
+	goldSpawn.position = Vector3(randf_range(-1, 1), 3, randf_range(-0.8,-1.5))
+	add_child(goldSpawn)
+	emeraldSpawn.position = Vector3(randf_range(-1, 1), 3, randf_range(-0.8,-1.5))
+	add_child(emeraldSpawn)
+	diamondSpawn.position = Vector3(randf_range(-1, 1), 3, randf_range(-0.8,-1.5))
+	add_child(diamondSpawn)
+	rubySpawn.position = Vector3(randf_range(-1, 1), 3, randf_range(-0.8,-1.5))
+	add_child(rubySpawn)
+	
+	
+
 func _on_button_pressed():
 	oneplayer = true
 	remove_child(titlespawn)

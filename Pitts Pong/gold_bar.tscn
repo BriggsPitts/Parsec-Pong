@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dojh0d8w7fy04"]
+
+[ext_resource type="ArrayMesh" uid="uid://cwdnq7egxgl8v" path="res://assets/goldbar.obj" id="1_knm4w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csv7i"]
+albedo_color = Color(0.988235, 0.980392, 0.345098, 1)
+metallic = 1.0
+metallic_specular = 0.56
+roughness = 0.25
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2iill"]
+size = Vector3(0.5, 0.135, 0.24)
+
+[node name="GoldBar" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.60136, 0.960664, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
+mesh = ExtResource("1_knm4w")
+surface_material_override/0 = SubResource("StandardMaterial3D_csv7i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_2iill")

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfewj78jemjnq"]
+
+[ext_resource type="ArrayMesh" uid="uid://c8dxmtfrb5hgm" path="res://assets/diamond.obj" id="1_80bhp"]
+[ext_resource type="Shader" path="res://assets/Glass_shader.gdshader" id="2_2yehv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x7ahd"]
+radius = 0.04
+height = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p4xhk"]
+render_priority = 0
+shader = ExtResource("2_2yehv")
+shader_parameter/albedo = Color(0.968627, 0.921569, 0.976471, 0.231373)
+shader_parameter/roughness = 0.354
+shader_parameter/normal_strength = 1.0
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+
+[node name="Diamond" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6282, 0.69264, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-6.97811e-05, 1, 0, -1, -6.97811e-05, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_x7ahd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.000517368, -0.000755608, 0)
+mesh = ExtResource("1_80bhp")
+surface_material_override/0 = SubResource("ShaderMaterial_p4xhk")

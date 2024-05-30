@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c8dxmtfrb5hgm"
+path="res://.godot/imported/diamond.obj-8becb2d06cdab06ff8538b183c38171e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/diamond.obj-8becb2d06cdab06ff8538b183c38171e.mesh"]
+
+source_file="res://assets/diamond.obj"
+dest_files=["res://.godot/imported/diamond.obj-8becb2d06cdab06ff8538b183c38171e.mesh", "res://.godot/imported/diamond.obj-8becb2d06cdab06ff8538b183c38171e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

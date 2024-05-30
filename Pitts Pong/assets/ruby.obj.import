@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dfvdp2vqp7xcy"
+path="res://.godot/imported/ruby.obj-4ce6436701dd8f009e88592e7a26aeff.mesh"
+
+[deps]
+
+files=["res://.godot/imported/ruby.obj-4ce6436701dd8f009e88592e7a26aeff.mesh"]
+
+source_file="res://assets/ruby.obj"
+dest_files=["res://.godot/imported/ruby.obj-4ce6436701dd8f009e88592e7a26aeff.mesh", "res://.godot/imported/ruby.obj-4ce6436701dd8f009e88592e7a26aeff.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

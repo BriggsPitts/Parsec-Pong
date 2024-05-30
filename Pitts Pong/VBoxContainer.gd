@@ -19,3 +19,13 @@ func _on_button_pressed():
 func _on_button_2_pressed():
 	hide()
 	pass # Replace with function body.
+
+
+func _on_credits_button_pressed():
+	hide()
+	pass # Replace with function body.
+
+
+func _on_back_credits_button_pressed():
+	show()
+	pass # Replace with function body.

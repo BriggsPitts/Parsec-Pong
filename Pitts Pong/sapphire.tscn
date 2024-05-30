@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://na0tlho6blnm"]
+
+[ext_resource type="ArrayMesh" uid="uid://ib0em30gh58l" path="res://assets/sapphire.obj" id="1_s22tb"]
+[ext_resource type="Shader" path="res://assets/Glass_shader.gdshader" id="2_a1u3x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3gd0s"]
+render_priority = 0
+shader = ExtResource("2_a1u3x")
+shader_parameter/albedo = Color(0, 0, 0.666667, 0.913725)
+shader_parameter/roughness = 0.0
+shader_parameter/normal_strength = 1.0
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cegjg"]
+height = 0.045
+radius = 0.11
+
+[node name="Sapphire" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.44522, 1.76132, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.316722, -0.501802, 0.165038)
+mesh = ExtResource("1_s22tb")
+surface_material_override/0 = SubResource("ShaderMaterial_3gd0s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.316727, -0.500988, 0.166402)
+shape = SubResource("CylinderShape3D_cegjg")
