@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bblpx7ydblb8n"]
+[gd_scene load_steps=49 format=3 uid="uid://bblpx7ydblb8n"]
 
 [ext_resource type="Script" path="res://RigidBody3D.gd" id="1_5wndi"]
 [ext_resource type="Script" path="res://Spacial.gd" id="1_7yegd"]
@@ -24,6 +24,10 @@
 [ext_resource type="Texture2D" uid="uid://cus4pmvon2i7h" path="res://assets/madeby2.png" id="21_op5if"]
 [ext_resource type="Texture2D" uid="uid://b58m401vylofi" path="res://assets/madeby3.png" id="22_wv4f1"]
 [ext_resource type="Script" path="res://Node3D.gd" id="24_shrcu"]
+[ext_resource type="Script" path="res://GreenFireworks.gd" id="25_8iih7"]
+[ext_resource type="AudioStream" uid="uid://blecnen1qu8j1" path="res://assets/Sounds/FireworkSound1.mp3" id="25_haqmf"]
+[ext_resource type="AudioStream" uid="uid://bdhbkqso5i66m" path="res://assets/Sounds/FireworkSound2.mp3" id="26_ymqyb"]
+[ext_resource type="AudioStream" uid="uid://dln80cspdfwym" path="res://assets/Sounds/FireworkSound3.mp3" id="27_dvi5v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_31tcr"]
 margin = 0.0
@@ -286,6 +290,7 @@ script = ExtResource("24_shrcu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.10535, 3.87021, -14.0701)
 emitting = false
 amount = 200
+lifetime = 2.6
 one_shot = true
 explosiveness = 0.95
 mesh = SubResource("QuadMesh_8hv7y")
@@ -298,11 +303,17 @@ damping_max = 5.0
 scale_amount_min = 0.9
 scale_amount_max = 1.1
 color_ramp = SubResource("Gradient_5jedw")
+script = ExtResource("25_8iih7")
+
+[node name="FireworkSound1" type="AudioStreamPlayer3D" parent="Node3D/GreenFireworks"]
+stream = ExtResource("25_haqmf")
+volume_db = 20.317
 
 [node name="RedFireworks" type="CPUParticles3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.783323, 5.29288, -14.0701)
 emitting = false
 amount = 200
+lifetime = 2.6
 one_shot = true
 explosiveness = 0.95
 mesh = SubResource("QuadMesh_8hv7y")
@@ -316,10 +327,15 @@ scale_amount_min = 0.9
 scale_amount_max = 1.1
 color_ramp = SubResource("Gradient_a2mva")
 
+[node name="FireworkSound2" type="AudioStreamPlayer3D" parent="Node3D/RedFireworks"]
+stream = ExtResource("26_ymqyb")
+volume_db = 22.01
+
 [node name="BlueFireworks" type="CPUParticles3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.75572, 3.23482, -14.0701)
 emitting = false
 amount = 200
+lifetime = 2.6
 one_shot = true
 explosiveness = 0.95
 mesh = SubResource("QuadMesh_8hv7y")
@@ -332,3 +348,9 @@ damping_max = 5.0
 scale_amount_min = 0.9
 scale_amount_max = 1.1
 color_ramp = SubResource("Gradient_u1cwn")
+
+[node name="FireworkSound3" type="AudioStreamPlayer3D" parent="Node3D/BlueFireworks"]
+stream = ExtResource("27_dvi5v")
+volume_db = 22.858
+
+[connection signal="visibility_changed" from="Node3D/GreenFireworks" to="Node3D/GreenFireworks" method="_on_visibility_changed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://c4t0qtys0ojai"]
+[gd_scene load_steps=72 format=3 uid="uid://c4t0qtys0ojai"]
 
 [ext_resource type="PackedScene" uid="uid://o8j01fwwmxgp" path="res://player.tscn" id="1_gk2rn"]
 [ext_resource type="Script" path="res://pong.gd" id="1_gnd6w"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://CanvasLayer.gd" id="6_8cnh0"]
 [ext_resource type="Theme" uid="uid://bangd873isqqg" path="res://pong_theme.tres" id="6_dcnf3"]
 [ext_resource type="PackedScene" uid="uid://dks5twcsew2i1" path="res://goal_particle.tscn" id="6_jr78r"]
+[ext_resource type="AudioStream" uid="uid://b0c8dq4pmpcxb" path="res://assets/Sounds/LeftGoalSound.mp3" id="6_uca4m"]
+[ext_resource type="AudioStream" uid="uid://bglmw0xs7l6ee" path="res://assets/Sounds/RightGoalSound.mp3" id="7_wqmiq"]
 [ext_resource type="Script" path="res://UI.gd" id="8_emk7w"]
 [ext_resource type="Script" path="res://VBoxContainer.gd" id="9_e1loa"]
 [ext_resource type="Script" path="res://P2LineEdit.gd" id="9_yqyyy"]
@@ -23,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://bqpvcjkc3o4ku" path="res://assets/ARROWUP.png" id="16_er5xy"]
 [ext_resource type="Script" path="res://AnimatedSprite2DW.gd" id="16_ntfsa"]
 [ext_resource type="Texture2D" uid="uid://ceot0xxh61suq" path="res://assets/S.png" id="17_0ljeu"]
+[ext_resource type="Script" path="res://QuitButton.gd" id="17_o54md"]
 [ext_resource type="Script" path="res://AnimatedSprite2DS.gd" id="18_qrshd"]
 [ext_resource type="Script" path="res://P1Label.gd" id="19_ie28k"]
 [ext_resource type="Texture2D" uid="uid://ckvrwxqey5rcn" path="res://assets/ARROWDOWN.png" id="19_pxi2n"]
@@ -50,6 +53,8 @@
 [ext_resource type="Script" path="res://RestartButton.gd" id="45_v32ey"]
 [ext_resource type="Script" path="res://CreditsButton.gd" id="46_mbh1l"]
 [ext_resource type="Script" path="res://BackCreditsButton.gd" id="47_6oma6"]
+[ext_resource type="AudioStream" uid="uid://caeejqf0bx5s3" path="res://assets/Sounds/WinExplosionSound.mp3" id="50_fbblq"]
+[ext_resource type="AudioStream" uid="uid://15sp0ys4f4x8" path="res://assets/Sounds/WinTrumpetsShort.mp3" id="51_u51eb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgsoq"]
 size = Vector2(300, 4)
@@ -255,6 +260,12 @@ ball = NodePath("../Ball")
 initial_ball_speed = 1000
 speed_multiplier = 1.15
 
+[node name="LeftGoalSound" type="AudioStreamPlayer2D" parent="Ball"]
+stream = ExtResource("6_uca4m")
+
+[node name="RightGoalSound" type="AudioStreamPlayer2D" parent="Ball"]
+stream = ExtResource("7_wqmiq")
+
 [node name="Ceiling" type="StaticBody2D" parent="." groups=["Ceiling"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
@@ -370,6 +381,16 @@ theme = ExtResource("6_dcnf3")
 text = "PLAY"
 script = ExtResource("14_gx8yi")
 
+[node name="QuitButton" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 0
+offset_left = 123.0
+offset_top = 155.0
+offset_right = 228.0
+offset_bottom = 182.0
+scale = Vector2(0.5, 0.5)
+text = "Quit? "
+script = ExtResource("17_o54md")
+
 [node name="enterLabel" type="Label" parent="CanvasLayer/UI"]
 layout_mode = 0
 offset_top = 151.51
@@ -457,6 +478,13 @@ frame = 25
 frame_progress = 1.0
 script = ExtResource("43_c7l7i")
 
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/Explosion"]
+stream = ExtResource("50_fbblq")
+
+[node name="WinTrumpets" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/Explosion"]
+stream = ExtResource("51_u51eb")
+volume_db = 3.303
+
 [node name="RestartButton" type="Button" parent="CanvasLayer/UI"]
 layout_mode = 0
 offset_left = 60.0
@@ -496,6 +524,7 @@ autostart = true
 
 [node name="goalParticle" parent="." instance=ExtResource("6_jr78r")]
 position = Vector2(152.3, 500)
+lifetime = 12.0
 
 [connection signal="input_event" from="Player2" to="Ball" method="_on_player_2_input_event"]
 [connection signal="body_entered" from="Player2Score" to="Ball" method="_on_player_2_score_body_entered"]
@@ -548,8 +577,8 @@ position = Vector2(152.3, 500)
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/P2Label" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_third_edit_text_submitted"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="." method="_on_p_1_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="Player" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="Player2" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="PlayerAI" method="_on_button_pressed"]
@@ -565,8 +594,8 @@ position = Vector2(152.3, 500)
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/P2Label" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/CreditsButton" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/CreditsButton" method="_on_p_1_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/CreditsButton" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Player" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Player2" method="_on_button_2_pressed"]
@@ -591,7 +620,10 @@ position = Vector2(152.3, 500)
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI/QuitButton" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI/CreditsButton" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/QuitButton" to="CanvasLayer/UI/QuitButton" method="_on_pressed"]
+[connection signal="animation_changed" from="CanvasLayer/UI/Explosion" to="CanvasLayer/UI/Explosion" method="_on_animation_changed"]
 [connection signal="animation_finished" from="CanvasLayer/UI/Explosion" to="CanvasLayer/UI" method="_on_explosion_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/UI/Explosion" to="CanvasLayer/UI/Explosion" method="_on_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/UI/RestartButton" to="CanvasLayer/UI/RestartButton" method="_on_pressed"]

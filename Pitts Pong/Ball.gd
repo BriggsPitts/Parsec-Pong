@@ -75,6 +75,7 @@ func _on_area_2d_area_entered(area):
 	var goalPosition = position
 	if area.is_in_group("P1S"):
 		
+		$RightGoalSound.play()
 		
 		add_child(particleSpawn)
 		
@@ -89,6 +90,8 @@ func _on_area_2d_area_entered(area):
 		reset_ball()
 	
 	if area.is_in_group("P2S"):
+		
+		$LeftGoalSound.play()
 		
 		add_child(particleSpawn2)
 		
