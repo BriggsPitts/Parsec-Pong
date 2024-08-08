@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bblpx7ydblb8n"]
+[gd_scene load_steps=50 format=3 uid="uid://bblpx7ydblb8n"]
 
 [ext_resource type="Script" path="res://RigidBody3D.gd" id="1_5wndi"]
 [ext_resource type="Script" path="res://Spacial.gd" id="1_7yegd"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cqhwxvtt734t5" path="res://assets/podium.glb" id="11_1yjtf"]
 [ext_resource type="PackedScene" uid="uid://c8l2uk11luch4" path="res://assets/GO.glb" id="12_vfj5j"]
 [ext_resource type="PackedScene" uid="uid://bu2l0jydpsype" path="res://ruby.tscn" id="13_i7thi"]
+[ext_resource type="AudioStream" uid="uid://ccp2u7d5wy6yx" path="res://assets/Sounds/GoSound.mp3" id="13_tumu6"]
 [ext_resource type="PackedScene" uid="uid://dfewj78jemjnq" path="res://diamond.tscn" id="14_nqbew"]
 [ext_resource type="PackedScene" uid="uid://dl3j3pbuptvw3" path="res://emerald.tscn" id="15_vg4g4"]
 [ext_resource type="PackedScene" uid="uid://dojh0d8w7fy04" path="res://gold_bar.tscn" id="16_sffgb"]
@@ -259,6 +260,11 @@ transform = Transform3D(0.945519, 0, -0.325568, 0, 1, 0, 0.325568, 0, 0.945519, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GO"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.723621, 0.258437, 2.98023e-08)
 shape = SubResource("BoxShape3D_wqnww")
+
+[node name="GoSound" type="AudioStreamPlayer3D" parent="GO"]
+stream = ExtResource("13_tumu6")
+panning_strength = 1.7
+doppler_tracking = 1
 
 [node name="Ruby" parent="." instance=ExtResource("13_i7thi")]
 

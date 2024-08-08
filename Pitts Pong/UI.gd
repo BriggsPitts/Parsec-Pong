@@ -3,6 +3,8 @@ extends Label
 var buttonHide = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	
 	$VBoxContainer.visible = false
 	$Button.visible = false
 	pass # Replace with function body.
@@ -34,4 +36,3 @@ func _on_timer_timeout():
 	elif buttonHide == true:
 		$Button.visible = false
 	pass # Replace with function body.
-

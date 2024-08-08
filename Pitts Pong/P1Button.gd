@@ -9,3 +9,17 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_pressed():
+	$ClickSound.play()
+	pass # Replace with function body.
+
+func _on_mouse_entered():
+	$MouseEnterSound.play()
+	pass # Replace with function body.
+
+
+func _on_mouse_exited():
+	$MouseExitSound.play()
+	pass # Replace with function body.

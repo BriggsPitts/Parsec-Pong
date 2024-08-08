@@ -1,21 +1,28 @@
-[gd_scene load_steps=72 format=3 uid="uid://c4t0qtys0ojai"]
+[gd_scene load_steps=82 format=3 uid="uid://c4t0qtys0ojai"]
 
 [ext_resource type="PackedScene" uid="uid://o8j01fwwmxgp" path="res://player.tscn" id="1_gk2rn"]
 [ext_resource type="Script" path="res://pong.gd" id="1_gnd6w"]
 [ext_resource type="Script" path="res://player2.gd" id="2_mkbyc"]
+[ext_resource type="AudioStream" uid="uid://blq70afniyfoa" path="res://assets/Sounds/PlayerMovementSfx.mp3" id="3_q5tno"]
 [ext_resource type="PackedScene" uid="uid://dcvpsp6pd23uh" path="res://ball.tscn" id="3_tbwlt"]
 [ext_resource type="PackedScene" uid="uid://bblpx7ydblb8n" path="res://Spacial.tscn" id="4_8psrp"]
 [ext_resource type="PackedScene" uid="uid://dkbbioo4nms3g" path="res://playerAI.tscn" id="4_t3l0x"]
+[ext_resource type="AudioStream" uid="uid://b6om8pjpsh3i8" path="res://assets/Sounds/PlayerMovementDownLeftSfx.mp3" id="4_uubj3"]
+[ext_resource type="AudioStream" uid="uid://cvj8ch64omx4r" path="res://assets/Sounds/PlayerMovementUpRightSfx.mp3" id="6_7cmbt"]
 [ext_resource type="Script" path="res://CanvasLayer.gd" id="6_8cnh0"]
 [ext_resource type="Theme" uid="uid://bangd873isqqg" path="res://pong_theme.tres" id="6_dcnf3"]
 [ext_resource type="PackedScene" uid="uid://dks5twcsew2i1" path="res://goal_particle.tscn" id="6_jr78r"]
-[ext_resource type="AudioStream" uid="uid://b0c8dq4pmpcxb" path="res://assets/Sounds/LeftGoalSound.mp3" id="6_uca4m"]
-[ext_resource type="AudioStream" uid="uid://bglmw0xs7l6ee" path="res://assets/Sounds/RightGoalSound.mp3" id="7_wqmiq"]
+[ext_resource type="AudioStream" uid="uid://6jyd2dhhrbeq" path="res://assets/Sounds/NewGoalSoundLeft.mp3" id="6_uvrk5"]
+[ext_resource type="AudioStream" uid="uid://clkxmgxbahqad" path="res://assets/Sounds/PlayerMovementDownRightSfx.mp3" id="7_3r2fh"]
+[ext_resource type="AudioStream" uid="uid://dbffl4xp63ms2" path="res://assets/Sounds/NewGoalSoundRight.mp3" id="7_yb817"]
 [ext_resource type="Script" path="res://UI.gd" id="8_emk7w"]
 [ext_resource type="Script" path="res://VBoxContainer.gd" id="9_e1loa"]
 [ext_resource type="Script" path="res://P2LineEdit.gd" id="9_yqyyy"]
 [ext_resource type="Script" path="res://P2LineEdit2.gd" id="10_incpt"]
 [ext_resource type="Script" path="res://1PLineEdit.gd" id="11_7dlmr"]
+[ext_resource type="AudioStream" uid="uid://idbfw0bqqpj2" path="res://assets/Sounds/Typewriterclick1.wav" id="11_sj0th"]
+[ext_resource type="AudioStream" uid="uid://8ymst2d8aj7l" path="res://assets/Sounds/textboxenterclick.wav" id="12_fgbku"]
+[ext_resource type="AudioStream" uid="uid://dqf64gkf0alsx" path="res://assets/Sounds/TextSubmittedSfx.wav" id="13_b3hxx"]
 [ext_resource type="Script" path="res://enterLabel.gd" id="14_cua44"]
 [ext_resource type="Script" path="res://playButton.gd" id="14_gx8yi"]
 [ext_resource type="Script" path="res://P1Button.gd" id="14_waqx1"]
@@ -29,6 +36,9 @@
 [ext_resource type="Script" path="res://AnimatedSprite2DS.gd" id="18_qrshd"]
 [ext_resource type="Script" path="res://P1Label.gd" id="19_ie28k"]
 [ext_resource type="Texture2D" uid="uid://ckvrwxqey5rcn" path="res://assets/ARROWDOWN.png" id="19_pxi2n"]
+[ext_resource type="AudioStream" uid="uid://uudthokij6bu" path="res://assets/Sounds/ButtonPressedSound.wav" id="19_sexn8"]
+[ext_resource type="AudioStream" uid="uid://5ryrlbymfvtu" path="res://assets/Sounds/MouseEnterSound.wav" id="20_2rojs"]
+[ext_resource type="AudioStream" uid="uid://d1w6nn8m3unx8" path="res://assets/Sounds/MouseExitSound.mp3" id="20_p8unh"]
 [ext_resource type="Script" path="res://P2Label.gd" id="22_7cjna"]
 [ext_resource type="Script" path="res://AnimatedSprite2DU.gd" id="23_7205y"]
 [ext_resource type="Script" path="res://AnimatedSprite2DD.gd" id="24_olwyv"]
@@ -245,10 +255,23 @@ script = ExtResource("1_gnd6w")
 [node name="Player" parent="." instance=ExtResource("1_gk2rn")]
 speed = 15000
 
+[node name="MovementSoundUp" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(-50, -100)
+stream = ExtResource("3_q5tno")
+
+[node name="MovementSoundDown" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("4_uubj3")
+
 [node name="Player2" parent="." instance=ExtResource("1_gk2rn")]
 position = Vector2(250, 100)
 script = ExtResource("2_mkbyc")
 speed = 15000
+
+[node name="MovementSoundRUP" type="AudioStreamPlayer2D" parent="Player2"]
+stream = ExtResource("6_7cmbt")
+
+[node name="MovementSoundRDOWN" type="AudioStreamPlayer2D" parent="Player2"]
+stream = ExtResource("7_3r2fh")
 
 [node name="PlayerAI" parent="." node_paths=PackedStringArray("ball") instance=ExtResource("4_t3l0x")]
 top_level = true
@@ -256,15 +279,21 @@ z_index = 5
 position = Vector2(250, 100)
 ball = NodePath("../Ball")
 
+[node name="MovementSoundRUP" type="AudioStreamPlayer2D" parent="PlayerAI"]
+stream = ExtResource("6_7cmbt")
+
+[node name="MovementSoundRDOWN" type="AudioStreamPlayer2D" parent="PlayerAI"]
+stream = ExtResource("7_3r2fh")
+
 [node name="Ball" parent="." instance=ExtResource("3_tbwlt")]
 initial_ball_speed = 1000
 speed_multiplier = 1.15
 
 [node name="LeftGoalSound" type="AudioStreamPlayer2D" parent="Ball"]
-stream = ExtResource("6_uca4m")
+stream = ExtResource("6_uvrk5")
 
 [node name="RightGoalSound" type="AudioStreamPlayer2D" parent="Ball"]
-stream = ExtResource("7_wqmiq")
+stream = ExtResource("7_yb817")
 
 [node name="Ceiling" type="StaticBody2D" parent="." groups=["Ceiling"]]
 
@@ -316,6 +345,16 @@ caret_blink = true
 caret_force_displayed = true
 script = ExtResource("11_7dlmr")
 
+[node name="TypingSound" type="AudioStreamPlayer2D" parent="Node3D/firstEdit"]
+position = Vector2(-57, -85)
+stream = ExtResource("11_sj0th")
+
+[node name="TextEntered" type="AudioStreamPlayer2D" parent="Node3D/firstEdit"]
+stream = ExtResource("12_fgbku")
+
+[node name="TextSubmittedSfx" type="AudioStreamPlayer2D" parent="Node3D/firstEdit"]
+stream = ExtResource("13_b3hxx")
+
 [node name="secondEdit" type="LineEdit" parent="Node3D"]
 offset_left = 57.0
 offset_top = 63.0
@@ -328,6 +367,16 @@ caret_blink = true
 caret_force_displayed = true
 script = ExtResource("9_yqyyy")
 
+[node name="TypingSound" type="AudioStreamPlayer2D" parent="Node3D/secondEdit"]
+position = Vector2(-57, -85)
+stream = ExtResource("11_sj0th")
+
+[node name="TextEntered" type="AudioStreamPlayer2D" parent="Node3D/secondEdit"]
+stream = ExtResource("12_fgbku")
+
+[node name="TextSubmittedSfx" type="AudioStreamPlayer2D" parent="Node3D/secondEdit"]
+stream = ExtResource("13_b3hxx")
+
 [node name="thirdEdit" type="LineEdit" parent="Node3D"]
 offset_left = 57.0
 offset_top = 107.0
@@ -339,6 +388,16 @@ max_length = 10
 caret_blink = true
 caret_force_displayed = true
 script = ExtResource("10_incpt")
+
+[node name="TypingSound" type="AudioStreamPlayer2D" parent="Node3D/thirdEdit"]
+position = Vector2(-57, -85)
+stream = ExtResource("11_sj0th")
+
+[node name="TextEntered" type="AudioStreamPlayer2D" parent="Node3D/thirdEdit"]
+stream = ExtResource("12_fgbku")
+
+[node name="TextSubmittedSfx" type="AudioStreamPlayer2D" parent="Node3D/thirdEdit"]
+stream = ExtResource("13_b3hxx")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("6_8cnh0")
@@ -365,10 +424,32 @@ layout_mode = 2
 text = "1 Player"
 script = ExtResource("14_waqx1")
 
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/VBoxContainer/P1Button"]
+stream = ExtResource("19_sexn8")
+
+[node name="MouseExitSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/VBoxContainer/P1Button"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_p8unh")
+
+[node name="MouseEnterSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/VBoxContainer/P1Button"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_2rojs")
+
 [node name="Button2" type="Button" parent="CanvasLayer/UI/VBoxContainer"]
 layout_mode = 2
 text = "2 Player"
 script = ExtResource("15_yvlu4")
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/VBoxContainer/Button2"]
+stream = ExtResource("19_sexn8")
+
+[node name="MouseExitSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/VBoxContainer/Button2"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_p8unh")
+
+[node name="MouseEnterSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/VBoxContainer/Button2"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_2rojs")
 
 [node name="Button" type="Button" parent="CanvasLayer/UI"]
 visible = false
@@ -381,6 +462,17 @@ theme = ExtResource("6_dcnf3")
 text = "PLAY"
 script = ExtResource("14_gx8yi")
 
+[node name="MouseExitSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/Button"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_p8unh")
+
+[node name="MouseEnterSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/Button"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_2rojs")
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/Button"]
+stream = ExtResource("19_sexn8")
+
 [node name="QuitButton" type="Button" parent="CanvasLayer/UI"]
 layout_mode = 0
 offset_left = 123.0
@@ -390,6 +482,17 @@ offset_bottom = 182.0
 scale = Vector2(0.5, 0.5)
 text = "Quit? "
 script = ExtResource("17_o54md")
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/QuitButton"]
+stream = ExtResource("19_sexn8")
+
+[node name="MouseExitSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/QuitButton"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_p8unh")
+
+[node name="MouseEnterSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/QuitButton"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_2rojs")
 
 [node name="enterLabel" type="Label" parent="CanvasLayer/UI"]
 layout_mode = 0
@@ -495,6 +598,17 @@ theme = ExtResource("6_dcnf3")
 text = "Restart?"
 script = ExtResource("45_v32ey")
 
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/RestartButton"]
+stream = ExtResource("19_sexn8")
+
+[node name="MouseExitSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/RestartButton"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_p8unh")
+
+[node name="MouseEnterSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/RestartButton"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_2rojs")
+
 [node name="CreditsButton" type="Button" parent="CanvasLayer/UI"]
 layout_mode = 0
 offset_left = 115.0
@@ -505,6 +619,17 @@ scale = Vector2(0.465, 0.465)
 text = "Credits"
 alignment = 0
 script = ExtResource("46_mbh1l")
+
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/CreditsButton"]
+stream = ExtResource("19_sexn8")
+
+[node name="MouseEnterSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/CreditsButton"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_2rojs")
+
+[node name="MouseExitSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/CreditsButton"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_p8unh")
 
 [node name="BackCreditsButton" type="Button" parent="CanvasLayer/UI"]
 visible = false
@@ -517,6 +642,17 @@ scale = Vector2(0.465, 0.465)
 text = "Back"
 script = ExtResource("47_6oma6")
 
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/BackCreditsButton"]
+stream = ExtResource("19_sexn8")
+
+[node name="MouseEnterSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/BackCreditsButton"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_2rojs")
+
+[node name="MouseExitSound" type="AudioStreamPlayer2D" parent="CanvasLayer/UI/BackCreditsButton"]
+position = Vector2(-70, -86)
+stream = ExtResource("20_p8unh")
+
 [node name="TitleTimer" type="Timer" parent="."]
 wait_time = 7.55
 one_shot = true
@@ -528,6 +664,8 @@ lifetime = 12.0
 
 [connection signal="input_event" from="Player2" to="Ball" method="_on_player_2_input_event"]
 [connection signal="body_entered" from="Player2Score" to="Ball" method="_on_player_2_score_body_entered"]
+[connection signal="focus_entered" from="Node3D/firstEdit" to="Node3D/firstEdit" method="_on_focus_entered"]
+[connection signal="text_changed" from="Node3D/firstEdit" to="Node3D/firstEdit" method="_on_text_changed"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="." method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="Player" method="_on_first_edit_text_submitted"]
@@ -544,6 +682,8 @@ lifetime = 12.0
 [connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/P2Label" method="_on_first_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_first_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/firstEdit" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_first_edit_text_submitted"]
+[connection signal="focus_entered" from="Node3D/secondEdit" to="Node3D/secondEdit" method="_on_focus_entered"]
+[connection signal="text_changed" from="Node3D/secondEdit" to="Node3D/secondEdit" method="_on_text_changed"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_p_2_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="Player" method="_on_second_edit_text_submitted"]
@@ -560,6 +700,8 @@ lifetime = 12.0
 [connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/P1Label" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/AnimatedSprite2DW" method="_on_second_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/secondEdit" to="CanvasLayer/UI/AnimatedSprite2DS" method="_on_second_edit_text_submitted"]
+[connection signal="focus_entered" from="Node3D/thirdEdit" to="Node3D/thirdEdit" method="_on_focus_entered"]
+[connection signal="text_changed" from="Node3D/thirdEdit" to="Node3D/thirdEdit" method="_on_text_changed"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_1_line_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_p_2_line_edit_2_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="Player" method="_on_third_edit_text_submitted"]
@@ -577,6 +719,8 @@ lifetime = 12.0
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/P2Label" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_third_edit_text_submitted"]
 [connection signal="text_submitted" from="Node3D/thirdEdit" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_third_edit_text_submitted"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/VBoxContainer/P1Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/VBoxContainer/P1Button" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="." method="_on_p_1_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="Player" method="_on_button_pressed"]
@@ -586,6 +730,7 @@ lifetime = 12.0
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="Node3D" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="Node3D/firstEdit" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/VBoxContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/VBoxContainer/P1Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/Button" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/enterLabel" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/P1Label" method="_on_button_pressed"]
@@ -596,6 +741,8 @@ lifetime = 12.0
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/CreditsButton" method="_on_p_1_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/P1Button" to="CanvasLayer/UI/CreditsButton" method="_on_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/VBoxContainer/Button2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/VBoxContainer/Button2" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Player" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="Player2" method="_on_button_2_pressed"]
@@ -616,20 +763,30 @@ lifetime = 12.0
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/AnimatedSprite2DU" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/AnimatedSprite2DD" method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/VBoxContainer/Button2" to="CanvasLayer/UI/CreditsButton" method="_on_button_2_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/Button" to="CanvasLayer/UI/Button" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/Button" to="CanvasLayer/UI/Button" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI/Button" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI/QuitButton" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="CanvasLayer/UI/CreditsButton" method="_on_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/QuitButton" to="CanvasLayer/UI/QuitButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/QuitButton" to="CanvasLayer/UI/QuitButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/UI/QuitButton" to="CanvasLayer/UI/QuitButton" method="_on_pressed"]
 [connection signal="animation_changed" from="CanvasLayer/UI/Explosion" to="CanvasLayer/UI/Explosion" method="_on_animation_changed"]
 [connection signal="animation_finished" from="CanvasLayer/UI/Explosion" to="CanvasLayer/UI" method="_on_explosion_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/UI/Explosion" to="CanvasLayer/UI/Explosion" method="_on_animation_finished"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/RestartButton" to="CanvasLayer/UI/RestartButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/RestartButton" to="CanvasLayer/UI/RestartButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/UI/RestartButton" to="CanvasLayer/UI/RestartButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/CreditsButton" to="CanvasLayer/UI/CreditsButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/CreditsButton" to="CanvasLayer/UI/CreditsButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/UI/CreditsButton" to="CanvasLayer/UI/VBoxContainer" method="_on_credits_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/CreditsButton" to="CanvasLayer/UI/CreditsButton" method="_on_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/CreditsButton" to="CanvasLayer/UI/BackCreditsButton" method="_on_credits_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/BackCreditsButton" to="CanvasLayer/UI/BackCreditsButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/BackCreditsButton" to="CanvasLayer/UI/BackCreditsButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/UI/BackCreditsButton" to="CanvasLayer/UI/VBoxContainer" method="_on_back_credits_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/BackCreditsButton" to="CanvasLayer/UI/CreditsButton" method="_on_back_credits_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/UI/BackCreditsButton" to="CanvasLayer/UI/BackCreditsButton" method="_on_pressed"]

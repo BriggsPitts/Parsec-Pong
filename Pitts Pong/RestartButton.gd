@@ -18,7 +18,18 @@ func _process(delta):
 
 
 func _on_pressed():
+	$ClickSound.play()
+	await get_tree().create_timer(0.2).timeout
 	get_tree().reload_current_scene()
 	Global.playeronescore = -1
 	Global.playertwoscore = -1
+	pass # Replace with function body.
+
+func _on_mouse_entered():
+	$MouseEnterSound.play()
+	pass # Replace with function body.
+
+
+func _on_mouse_exited():
+	$MouseExitSound.play()
 	pass # Replace with function body.

@@ -66,6 +66,7 @@ func _physics_process(delta):
 		atGameStart = true
 	
 	if Input.is_action_pressed("start_round") && atGameStart == true:
+		$GO/GoSound.play()
 		$GO.position = Vector3(-.8, 0, -0.5)
 	
 	if Global.playeronescore == 7 && oneplayer == true:

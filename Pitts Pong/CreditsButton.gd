@@ -18,6 +18,16 @@ func _process(delta):
 
 
 func _on_pressed():
+	$ClickSound.play()
 	Global.credits = true
 	hide()
+	pass # Replace with function body.
+
+func _on_mouse_entered():
+	$MouseEnterSound.play()
+	pass # Replace with function body.
+
+
+func _on_mouse_exited():
+	$MouseExitSound.play()
 	pass # Replace with function body.

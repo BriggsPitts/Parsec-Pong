@@ -18,6 +18,16 @@ func _on_credits_button_pressed():
 
 
 func _on_pressed():
+	$ClickSound.play()
 	Global.credits = false
 	hide()
+	pass # Replace with function body.
+
+func _on_mouse_entered():
+	$MouseEnterSound.play()
+	pass # Replace with function body.
+
+
+func _on_mouse_exited():
+	$MouseExitSound.play()
 	pass # Replace with function body.

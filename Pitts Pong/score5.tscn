@@ -1,17 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://v73sbnd774wl"]
+[gd_scene load_steps=5 format=3 uid="uid://v73sbnd774wl"]
 
 [ext_resource type="PackedScene" uid="uid://cicspekh0586" path="res://assets/score5.glb" id="1_0gw22"]
+[ext_resource type="Script" path="res://FiveNumber.gd" id="1_js0bb"]
+[ext_resource type="AudioStream" uid="uid://di7xccujg46xx" path="res://assets/Sounds/FiveSound.mp3" id="3_hnhc4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2sl3v"]
 size = Vector3(0.26, 0.435, 0.135)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="NumberFive" type="RigidBody3D" parent="."]
 constant_force = Vector3(0, 1.01, 0)
+script = ExtResource("1_js0bb")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NumberFive"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.195, 0)
 shape = SubResource("BoxShape3D_2sl3v")
 
-[node name="score5" parent="RigidBody3D" instance=ExtResource("1_0gw22")]
+[node name="score5" parent="NumberFive" instance=ExtResource("1_0gw22")]
+
+[node name="FiveSound" type="AudioStreamPlayer3D" parent="NumberFive"]
+stream = ExtResource("3_hnhc4")
+volume_db = -8.466
+unit_size = 2.0
+
+[connection signal="tree_entered" from="NumberFive" to="NumberFive" method="_on_tree_entered"]

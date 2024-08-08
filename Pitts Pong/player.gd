@@ -12,9 +12,11 @@ func _physics_process(delta):
 	
 	var movement = Vector2.ZERO
 	if Input.is_action_pressed("move_up"):
+		$MovementSoundUp.play()
 		movement = Vector2.UP
 		
 	elif Input.is_action_pressed("move_down"):
+		$MovementSoundDown.play()
 		movement = Vector2.DOWN
 		
 	velocity = movement * speed * delta
