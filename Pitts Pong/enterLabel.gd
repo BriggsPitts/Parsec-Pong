@@ -66,3 +66,8 @@ func untilClick():
 		rotation_degrees = -2
 		await get_tree().create_timer(1).timeout
 		rotation_degrees = 0
+
+
+func _on_back_player_select_button_pressed():
+	hide()
+	pass # Replace with function body.

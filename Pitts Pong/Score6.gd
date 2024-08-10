@@ -1,9 +1,9 @@
-extends Node3D
+extends RigidBody3D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$RigidBody3D/TitleHum.play()
+	$SixSound.play()
 	pass # Replace with function body.
 
 

@@ -37,3 +37,6 @@ func _on_focus_entered():
 	$TextEntered.play()
 	pass # Replace with function body.
 
+func _on_back_player_select_button_pressed():
+	hide()
+	pass # Replace with function body.

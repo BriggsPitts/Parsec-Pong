@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cicspekh0586" path="res://assets/score5.glb" id="1_0gw22"]
 [ext_resource type="Script" path="res://FiveNumber.gd" id="1_js0bb"]
-[ext_resource type="AudioStream" uid="uid://di7xccujg46xx" path="res://assets/Sounds/FiveSound.mp3" id="3_hnhc4"]
+[ext_resource type="AudioStream" uid="uid://d2lr5k4v5vmb5" path="res://assets/Sounds/FiveSound2.mp3" id="3_4t2qt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2sl3v"]
 size = Vector3(0.26, 0.435, 0.135)
@@ -20,8 +20,9 @@ shape = SubResource("BoxShape3D_2sl3v")
 [node name="score5" parent="NumberFive" instance=ExtResource("1_0gw22")]
 
 [node name="FiveSound" type="AudioStreamPlayer3D" parent="NumberFive"]
-stream = ExtResource("3_hnhc4")
+stream = ExtResource("3_4t2qt")
 volume_db = -8.466
-unit_size = 2.0
+unit_size = 0.5
+doppler_tracking = 1
 
 [connection signal="tree_entered" from="NumberFive" to="NumberFive" method="_on_tree_entered"]

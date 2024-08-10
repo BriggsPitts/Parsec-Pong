@@ -13,7 +13,7 @@ func _process(delta):
 		visible = true
 		buttonHide = true
 	pass
-
+	
 
 func _on_button_pressed():
 	hide()
@@ -34,3 +34,4 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	$MouseExitSound.play()
 	pass # Replace with function body.
+

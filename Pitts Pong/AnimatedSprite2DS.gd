@@ -35,3 +35,7 @@ func _on_second_edit_text_submitted(new_text):
 	hide()
 	pass # Replace with function body.
 
+
+func _on_back_player_select_button_pressed():
+	hide()
+	pass # Replace with function body.

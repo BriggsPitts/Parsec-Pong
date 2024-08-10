@@ -24,3 +24,9 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	$MouseExitSound.play()
 	pass # Replace with function body.
+
+
+
+func _on_back_player_select_button_pressed():
+	show()
+	pass # Replace with function body.

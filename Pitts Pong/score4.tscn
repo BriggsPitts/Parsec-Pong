@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmmph6pfljvbd"]
+[gd_scene load_steps=5 format=3 uid="uid://dmmph6pfljvbd"]
 
+[ext_resource type="Script" path="res://Score4.gd" id="1_6db5b"]
 [ext_resource type="PackedScene" uid="uid://w7117g2oefd" path="res://assets/score4.glb" id="1_24sba"]
+[ext_resource type="AudioStream" uid="uid://dgvao8gkdbpw2" path="res://assets/Sounds/FourSound.mp3" id="3_8kh6g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2he38"]
 radius = 0.1
@@ -10,8 +12,13 @@ height = 0.2
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 gravity_scale = 0.5
+script = ExtResource("1_6db5b")
 
 [node name="score4" parent="RigidBody3D" instance=ExtResource("1_24sba")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("CapsuleShape3D_2he38")
+
+[node name="FourSound" type="AudioStreamPlayer3D" parent="RigidBody3D"]
+stream = ExtResource("3_8kh6g")
+doppler_tracking = 1
