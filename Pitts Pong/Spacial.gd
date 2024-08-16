@@ -120,6 +120,7 @@ func _physics_process(delta):
 		$podium.position = Vector3(0, -0.775, -1.2)
 		var randx = randi_range(0, 1)
 		var randz = randi_range(-0.8, -1.5)
+		$Crown.freeze = false
 		$Crown.position = Vector3(randx, 10, randz)
 		
 		$Grass.position = Vector3(0, -1.1, -1.9)
@@ -138,6 +139,7 @@ func _physics_process(delta):
 		$podium.position = Vector3(0, -0.775, -1.2)
 		var randx = randi_range(0, 1)
 		var randz = randi_range(-0.8, -1.5)
+		$Crown.freeze = false
 		$Crown.position = Vector3(randx, 10, randz)
 		
 		

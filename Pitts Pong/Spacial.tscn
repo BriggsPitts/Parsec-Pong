@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bblpx7ydblb8n"]
+[gd_scene load_steps=59 format=3 uid="uid://bblpx7ydblb8n"]
 
 [ext_resource type="Script" path="res://RigidBody3D.gd" id="1_5wndi"]
 [ext_resource type="Script" path="res://Spacial.gd" id="1_7yegd"]
@@ -9,16 +9,24 @@
 [ext_resource type="PackedScene" uid="uid://cbog0nrtmjmvp" path="res://assets/score1.glb" id="6_dyo6a"]
 [ext_resource type="Texture2D" uid="uid://bsnl4islbfjgt" path="res://assets/grassTexture.png" id="8_2jdu4"]
 [ext_resource type="PackedScene" uid="uid://dn4mt28o5mw8d" path="res://assets/trophy.glb" id="9_tltba"]
+[ext_resource type="Script" path="res://Crown.gd" id="10_cbc25"]
 [ext_resource type="PackedScene" uid="uid://bev14cdgot1tr" path="res://assets/crown.glb" id="10_hmumo"]
 [ext_resource type="PackedScene" uid="uid://cqhwxvtt734t5" path="res://assets/podium.glb" id="11_1yjtf"]
+[ext_resource type="AudioStream" uid="uid://d3cnv1mvh5the" path="res://assets/Sounds/CrownSound1.mp3" id="12_gdgnv"]
 [ext_resource type="PackedScene" uid="uid://c8l2uk11luch4" path="res://assets/GO.glb" id="12_vfj5j"]
+[ext_resource type="AudioStream" uid="uid://31u51g7vsjb" path="res://assets/Sounds/CrownSound2.mp3" id="13_274p0"]
 [ext_resource type="PackedScene" uid="uid://bu2l0jydpsype" path="res://ruby.tscn" id="13_i7thi"]
 [ext_resource type="AudioStream" uid="uid://ccp2u7d5wy6yx" path="res://assets/Sounds/GoSound.mp3" id="13_tumu6"]
+[ext_resource type="AudioStream" uid="uid://pggdrbsw1bwf" path="res://assets/Sounds/CrownSound3.mp3" id="14_n5xir"]
 [ext_resource type="PackedScene" uid="uid://dfewj78jemjnq" path="res://diamond.tscn" id="14_nqbew"]
+[ext_resource type="AudioStream" uid="uid://b1j0edee06hlm" path="res://assets/Sounds/CrownSound4.mp3" id="15_3cqj2"]
 [ext_resource type="PackedScene" uid="uid://dl3j3pbuptvw3" path="res://emerald.tscn" id="15_vg4g4"]
+[ext_resource type="AudioStream" uid="uid://b2mlwi1rqlusi" path="res://assets/Sounds/CrownSound5.mp3" id="16_10rdm"]
 [ext_resource type="PackedScene" uid="uid://dojh0d8w7fy04" path="res://gold_bar.tscn" id="16_sffgb"]
+[ext_resource type="AudioStream" uid="uid://dd3lo53bo4pju" path="res://assets/Sounds/CrownSound6.mp3" id="17_rao6q"]
 [ext_resource type="PackedScene" uid="uid://na0tlho6blnm" path="res://sapphire.tscn" id="17_sgwcs"]
 [ext_resource type="ArrayMesh" uid="uid://cktvmhq3rmelh" path="res://assets/BRIGGS.obj" id="18_2t54v"]
+[ext_resource type="AudioStream" uid="uid://mabbh0uri2tj" path="res://assets/Sounds/CrownSound7.mp3" id="18_wdwwo"]
 [ext_resource type="Texture2D" uid="uid://bgcoxluvo6hs7" path="res://assets/gradienttexture.png" id="19_mmro4"]
 [ext_resource type="Texture2D" uid="uid://b3xl0bvp3ergw" path="res://assets/madeby1.png" id="20_ebwpr"]
 [ext_resource type="Script" path="res://BRIGGS.gd" id="20_q6fgi"]
@@ -75,6 +83,25 @@ size = Vector3(0.07, 0.325, 0.72)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h4n3y"]
 size = Vector3(1, 0.48, 0.1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fc232"]
+streams_count = 7
+playback_mode = 1
+random_pitch = 1.18
+stream_0/stream = ExtResource("12_gdgnv")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("13_274p0")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("14_n5xir")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("15_3cqj2")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("16_10rdm")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("17_rao6q")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("18_wdwwo")
+stream_6/weight = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rwpbn"]
 size = Vector3(2.123, 0.545, 0.565)
@@ -209,9 +236,13 @@ transform = Transform3D(0.573576, 0, 0.819152, 0, 1, 0, -0.819152, 0, 0.573576, 
 shape = SubResource("BoxShape3D_sv2v0")
 
 [node name="Crown" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.91715, 0, 0)
 gravity_scale = 1.2
 continuous_cd = true
+max_contacts_reported = 1
+contact_monitor = true
 linear_velocity = Vector3(0, -0.5, 0)
+script = ExtResource("10_cbc25")
 
 [node name="crown" parent="Crown" instance=ExtResource("10_hmumo")]
 transform = Transform3D(2.925, 0, 0, 0, 2.925, 0, 0, 0, 2.925, 0, 0, 0)
@@ -239,6 +270,9 @@ shape = SubResource("BoxShape3D_h4n3y")
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="Crown"]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.663, 0.395, 0.379)
 shape = SubResource("BoxShape3D_h4n3y")
+
+[node name="CrownSound1" type="AudioStreamPlayer3D" parent="Crown"]
+stream = SubResource("AudioStreamRandomizer_fc232")
 
 [node name="podium" type="RigidBody3D" parent="."]
 transform = Transform3D(0.887317, 0, 0.46116, 0, 1, 0, -0.46116, 0, 0.887317, 0, -0.350749, 0)
@@ -359,4 +393,5 @@ color_ramp = SubResource("Gradient_u1cwn")
 stream = ExtResource("27_dvi5v")
 volume_db = 22.858
 
+[connection signal="body_entered" from="Crown" to="Crown" method="_on_body_entered"]
 [connection signal="visibility_changed" from="Node3D/GreenFireworks" to="Node3D/GreenFireworks" method="_on_visibility_changed"]
